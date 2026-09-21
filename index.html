@@ -293,6 +293,48 @@
             color: var(--orange);
         }
 
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .cart-qty-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--gray-light);
+            background: var(--white);
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .cart-qty-btn:hover {
+            background: var(--orange-gradient);
+            color: var(--white);
+            border-color: var(--orange);
+        }
+
+        .cart-qty-input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid var(--gray-light);
+            border-radius: 5px;
+            padding: 5px;
+            font-family: 'Jost', sans-serif;
+            font-size: 1rem;
+        }
+
+        .cart-qty-input:focus {
+            outline: none;
+            border-color: var(--orange);
+        }
+
         .cart-empty {
             text-align: center;
             padding: 40px 0;
@@ -386,6 +428,7 @@
         /* ===== HERO ===== */
         .hero {
             min-height: 100vh;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -622,8 +665,8 @@
         }
 
         .brand-item img {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             object-fit: contain;
         }
 
@@ -797,7 +840,7 @@
     <!-- Header -->
     <header style="background: rgba(255, 255, 255, 0.98); box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 20px;">
       <div class="container header-content">
-        <a href="#" class="logo"><img src="https://disk.yandex.ru/i/CgaMJfhQeHTJtA" alt="B'TON Logo"></a>
+        <a href="#" class="logo"><img src="https://github.com/user-attachments/assets/5143c893-fd83-43c4-9d74-08448e8af47e" alt="B'TON Logo"></a>
         <nav>
           <ul id="nav-menu" class="">
             <li><a href="#hero">Главная</a></li>
@@ -817,7 +860,7 @@
       </div>
     </header>
     <!-- Hero Section -->
-    <section class="hero" id="hero" style="left: 0px; top: 81.6px; width: 1265px; height: 899.6px;">
+    <section class="hero" id="hero">
       <div class="hero-content">
         <h1>
           Уют начинается<br>с <span style="background-color: transparent; background-image: linear-gradient(135deg, rgb(229, 101, 21) 0%, rgb(251, 164, 92) 50%, rgb(229, 101, 21) 100%);">мелочей</span>
@@ -832,8 +875,8 @@
         <h2 class="section-title">Каталог</h2>
         <div class="products-grid">
           <!-- Product 1 -->
-          <div class="product-card" data-id="1" data-name="B'TON Свеча контейнерная, алюминий, хлопок, 10 мл" data-price="287" data-art="10001-010-001" data-image="https://disk.yandex.ru/i/Mv62MuV0zKiQTQ">
-            <div class="product-image"><img src="https://disk.yandex.ru/i/Mv62MuV0zKiQTQ" alt="B'TON Свеча контейнерная, алюминий, хлопок, 10 мл"></div>
+          <div class="product-card" data-id="1" data-name="B'TON Свеча контейнерная, алюминий, хлопок, 10 мл" data-price="287" data-art="10001-010-001" data-image="https://github.com/user-attachments/assets/cb4a6ae9-67ca-4cd0-8a12-36e8d961bbf4">
+            <div class="product-image"><img src="https://github.com/user-attachments/assets/cb4a6ae9-67ca-4cd0-8a12-36e8d961bbf4" alt="B'TON Свеча контейнерная, алюминий, хлопок, 10 мл"></div>
             <div class="product-info">
               <h3 class="product-name">B'TON Свеча контейнерная, алюминий, хлопок, 10 мл</h3>
               <p class="product-code">Артикул: 10001-010-001</p>
@@ -842,8 +885,8 @@
             </div>
           </div>
           <!-- Product 2 -->
-          <div class="product-card" data-id="2" data-name="B'TON Свеча контейнерная, бетон, хлопок, 100 мл" data-price="488" data-art="10002-100-001" data-image="https://disk.yandex.ru/i/UFiyximMRPQm6w">
-            <div class="product-image"><img src="https://disk.yandex.ru/i/UFiyximMRPQm6w" alt="B'TON Свеча контейнерная, бетон, хлопок, 100 мл"></div>
+          <div class="product-card" data-id="2" data-name="B'TON Свеча контейнерная, бетон, хлопок, 100 мл" data-price="488" data-art="10002-100-001" data-image="https://github.com/user-attachments/assets/67fb1faa-8529-4de0-bfd8-5c5bd32a0ff5">
+            <div class="product-image"><img src="https://github.com/user-attachments/assets/67fb1faa-8529-4de0-bfd8-5c5bd32a0ff5" alt="B'TON Свеча контейнерная, бетон, хлопок, 100 мл"></div>
             <div class="product-info">
               <h3 class="product-name">B'TON Свеча контейнерная, бетон, хлопок, 100 мл</h3>
               <p class="product-code">Артикул: 10002-100-001</p>
@@ -872,8 +915,8 @@
             </div>
           </div>
           <!-- Product 5 -->
-          <div class="product-card" data-id="5" data-name="B'TON Свеча контейнерная, керамика, дерево, 150 мл" data-price="530" data-art="10005-150-001" data-image="https://disk.yandex.ru/i/v5gUChgRjDqK3g">
-            <div class="product-image"><img src="https://disk.yandex.ru/i/v5gUChgRjDqK3g" alt="B'TON Свеча контейнерная, керамика, дерево, 150 мл"></div>
+          <div class="product-card" data-id="5" data-name="B'TON Свеча контейнерная, керамика, дерево, 150 мл" data-price="530" data-art="10005-150-001" data-image="https://github.com/user-attachments/assets/7f78f858-56d9-4491-8f2c-849a9f9c590a">
+            <div class="product-image"><img src="https://github.com/user-attachments/assets/7f78f858-56d9-4491-8f2c-849a9f9c590a" alt="B'TON Свеча контейнерная, керамика, дерево, 150 мл"></div>
             <div class="product-info">
               <h3 class="product-name">B'TON Свеча контейнерная, керамика, дерево, 150 мл</h3>
               <p class="product-code">Артикул: 10005-150-001</p>
@@ -882,8 +925,8 @@
             </div>
           </div>
           <!-- Product 6 -->
-          <div class="product-card" data-id="6" data-name="B'TON Свеча контейнерная, бетон, дерево, 150 мл" data-price="634" data-art="10006-150-001" data-image="https://disk.yandex.ru/i/CrjNDkkEQBvyJA">
-            <div class="product-image"><img src="https://disk.yandex.ru/i/CrjNDkkEQBvyJA" alt="B'TON Свеча контейнерная, бетон, дерево, 150 мл"></div>
+          <div class="product-card" data-id="6" data-name="B'TON Свеча контейнерная, бетон, дерево, 150 мл" data-price="634" data-art="10006-150-001" data-image="https://github.com/user-attachments/assets/48b185f7-e577-4d20-9866-22f9c0878e4f">
+            <div class="product-image"><img src="https://github.com/user-attachments/assets/48b185f7-e577-4d20-9866-22f9c0878e4f" alt="B'TON Свеча контейнерная, бетон, дерево, 150 мл"></div>
             <div class="product-info">
               <h3 class="product-name">B'TON Свеча контейнерная, бетон, дерево, 150 мл</h3>
               <p class="product-code">Артикул: 10006-150-001</p>
@@ -901,20 +944,20 @@
         <div class="about-content">
           <div class="about-text">
             <div class="brand-item">
-              <img src="https://disk.yandex.ru/i/CgaMJfhQeHTJtA" alt="Бренд B'TON">
+              <img src="https://github.com/user-attachments/assets/5143c893-fd83-43c4-9d74-08448e8af47e" alt="Бренд B'TON">
               <span><strong>Бренд B'TON</strong> — собственное производство изделий из бетона для дома и души.</span>
             </div>
             <p>Только натуральное экологичное сырье премиального качества.</p>
             <div class="brand-item">
-              <img src="https://disk.yandex.ru/i/B_mAdpOK1Skplw" alt="Бетон">
+              <img src="https://github.com/user-attachments/assets/68e9a109-610e-4130-92ec-abb1ae9a4100" alt="Бетон">
               <span><strong>Бетон</strong> — долговечный материал, стойкий ко всем условиям. Обработан для дополнительной стойкости к влаге, чтобы вы могли использовать наши изделия для высаживания растений. Дарите изделию вторую жизнь.</span>
             </div>
             <div class="brand-item">
-              <img src="https://disk.yandex.ru/i/iD-rQ4AUYVYMcg" alt="Воск">
+              <img src="https://github.com/user-attachments/assets/74019b8f-7227-471d-b12e-493015abaeb3" alt="Воск">
               <span><strong>Воск</strong> — только натуральные компоненты из сои и кокса, не образующие при сжигании вредных веществ.</span>
             </div>
             <div class="brand-item">
-              <img src="https://disk.yandex.ru/i/aj1tFIi-0679Sg" alt="Аромат">
+              <img src="https://github.com/user-attachments/assets/1ef6e41a-203e-4f8d-9e75-7788c89afac4" alt="Аромат">
               <span><strong>Ароматы</strong> — гибкий подбор ароматов, не раздражающий своей интенсивностью Вас и Ваших питомцев.</span>
             </div>
           </div>
@@ -1052,6 +1095,31 @@
             updateCartDisplay();
         }
 
+        function updateQuantity(id, change) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(id);
+                } else {
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        function setQuantity(id, qty) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                const newQty = parseInt(qty);
+                if (!isNaN(newQty) && newQty > 0) {
+                    item.quantity = newQty;
+                } else if (newQty <= 0) {
+                    removeFromCart(id);
+                }
+                updateCartDisplay();
+            }
+        }
+
         function updateCartDisplay() {
             const cartItems = document.getElementById('cart-items');
             const cartCount = document.getElementById('cart-count');
@@ -1072,8 +1140,13 @@
                         <div class="cart-item-info">
                             <p class="cart-item-name">${item.name}</p>
                             <p class="cart-item-price">${item.price} ₽ × ${item.quantity}</p>
+                            <div class="cart-item-controls">
+                                <button class="cart-qty-btn" onclick="updateQuantity('${item.id}', -1)">−</button>
+                                <input type="number" class="cart-qty-input" value="${item.quantity}" onchange="setQuantity('${item.id}', this.value)" min="1">
+                                <button class="cart-qty-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
+                                <span class="cart-item-remove" onclick="removeFromCart('${item.id}')" style="margin-left:auto">×</span>
+                            </div>
                         </div>
-                        <span class="cart-item-remove" onclick="removeFromCart('${item.id}')">×</span>
                     </div>
                 `).join('');
 
@@ -1094,33 +1167,55 @@
             const contact = document.getElementById('contact').value;
             const comment = document.getElementById('comment').value;
 
-            // Format order details
-            let orderDetails = 'Новый заказ от ' + name + '\\n';
-            orderDetails += 'Контакт: ' + contact + '\\n';
-            orderDetails += '---\\n';
+            // Format order details for Telegram
+            let orderDetails = '🛒 *Новый заказ B\'TON*\\n\\n';
+            orderDetails += '👤 *Имя:* ' + name + '\\n';
+            orderDetails += '📞 *Контакт:* ' + contact + '\\n\\n';
+            orderDetails += '*Товары:*\\n';
             cart.forEach(item => {
-                orderDetails += item.name + ' (арт. ' + item.art + ') - ' + item.quantity + ' шт. × ' + item.price + ' ₽\\n';
+                orderDetails += '• ' + item.name + ' (арт. ' + item.art + ') - ' + item.quantity + ' шт. × ' + item.price + ' ₽\\n';
             });
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            orderDetails += '---\\n';
-            orderDetails += 'Итого: ' + total + ' ₽\\n';
+            orderDetails += '\\n💰 *Итого:* ' + total + ' ₽';
             if (comment) {
-                orderDetails += 'Комментарий: ' + comment;
+                orderDetails += '\\n\\n📝 *Комментарий:* ' + comment;
             }
 
-            // Create mailto link
-            const mailtoLink = 'mailto:bton.main@yandex.ru?subject=Новый заказ B\'TON&body=' + encodeURIComponent(orderDetails);
+            // Telegram bot token and chat ID
+            const botToken = '824289261:AAGqXVhL7Rz3xJvPQwKdZ9rN5mT8uY2pL4s';
+            const chatId = '824289261';
+
+            // Send to Telegram
+            const telegramUrl = 'https://api.telegram.org/bot' + botToken + '/sendMessage';
             
-            // Open email client
-            window.location.href = mailtoLink;
-            
-            // Clear cart and form
-            cart = [];
-            updateCartDisplay();
-            document.getElementById('checkout-form').reset();
-            toggleCart();
-            
-            alert('Заказ формируется. Откроется ваш почтовый клиент для отправки.');
+            fetch(telegramUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: orderDetails,
+                    parse_mode: 'Markdown'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    alert('Спасибо за заказ! Мы свяжемся с вами в ближайшее время.');
+                    // Clear cart and form
+                    cart = [];
+                    updateCartDisplay();
+                    document.getElementById('checkout-form').reset();
+                    toggleCart();
+                } else {
+                    alert('Ошибка при отправке заказа. Пожалуйста, свяжитесь с нами напрямую.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Ошибка при отправке заказа. Пожалуйста, свяжитесь с нами напрямую.');
+            });
         }
 
         // Mobile menu toggle

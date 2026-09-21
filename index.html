@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
+<html lang="ru" class="vcs-nosel">
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B'TON — изделия из бетона для дома</title>
     <meta name="description" content="Свечи в бетонных контейнерах ручной работы. Натуральный воск, ароматы премиум качества.">
-
     <!-- Подключение шрифта JOST -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
     <style>
         :root {
             --gray-light: #e6e6e6;
@@ -514,204 +512,167 @@
             }
         }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header -->
-    <header>
-        <div class="container header-content">
-            <a href="#" class="logo">B'TON</a>
-
-            <nav>
-                <ul id="nav-menu">
-                    <li><a href="#hero">Главная</a></li>
-                    <li><a href="#catalog">Каталог</a></li>
-                    <li><a href="#about">О нас</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
-                </ul>
-            </nav>
-
-            <div class="header-socials">
-                <a href="https://vk.ru/bton.store" target="_blank" class="social-icon" title="ВКонтакте">VK</a>
-                <a href="mailto:bton.main@yandex.ru" class="social-icon" title="Email">@</a>
-                <a href="tel:+79152043382" class="social-icon" title="Телефон">📞</a>
-            </div>
-
-            <div class="burger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <header style="background: rgba(255, 255, 255, 0.98); box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 20px;">
+      <div class="container header-content">
+        <a href="#" class="logo">B'TON</a>
+        <nav>
+          <ul id="nav-menu" class="">
+            <li><a href="#hero">Главная</a></li>
+            <li><a href="#catalog">Каталог</a></li>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+          </ul>
+        </nav>
+        <div class="header-socials">
+          <a href="https://vk.ru/bton.store" target="_blank" class="social-icon" title="ВКонтакте">VK</a> <a href="mailto:bton.main@yandex.ru" class="social-icon" title="Email">@</a> <a href="tel:+79152043382" class="social-icon" title="Телефон">📞</a>
         </div>
+        <div class="burger" onclick="toggleMenu()"><span></span> <span></span> <span></span></div>
+      </div>
     </header>
-
     <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <h1>Уют начинается<br>с <span>мелочей</span></h1>
-            <p>мелочи начинаются с нас</p>
-        </div>
-        <a href="#catalog" class="scroll-arrow">
-            <svg viewBox="0 0 24 24">
-                <path d="M12 16l-6-6h12l-6 6z"/>
-            </svg>
-        </a>
+    <section class="hero" id="hero" style="left: 0px; top: 81.6px; width: 1265px; height: 899.6px;">
+      <div class="hero-content">
+        <h1>
+          Уют начинается<br>с <span style="background-color: transparent; background-image: linear-gradient(135deg, rgb(229, 101, 21) 0%, rgb(251, 164, 92) 50%, rgb(229, 101, 21) 100%);">мелочей</span>
+        </h1>
+        <p style="color: rgb(77, 77, 77);">мелочи начинаются с нас</p>
+      </div>
+      <a href="#catalog" class="scroll-arrow"> <svg viewBox="0 0 24 24"> <path d="M12 16l-6-6h12l-6 6z"></path> </svg> </a>
     </section>
-
     <!-- Catalog Section -->
     <section class="catalog" id="catalog">
-        <div class="container">
-            <h2 class="section-title">Каталог</h2>
-            <div class="products-grid">
-                <!-- Product 1 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-placeholder">🕯️</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">B'TON Свеча контейнерная, алюминий, хлопок, 10 мл</h3>
-                        <p class="product-code">Артикул: 10001-010-001</p>
-                        <p class="product-price">287 ₽</p>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-placeholder">🕯️</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">B'TON Свеча контейнерная, бетон, хлопок, 100 мл</h3>
-                        <p class="product-code">Артикул: 10002-100-001</p>
-                        <p class="product-price">488 ₽</p>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-placeholder">🕯️</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">B'TON Свеча контейнерная, стекло, дерево, 125 мл</h3>
-                        <p class="product-code">Артикул: 10003-125-001</p>
-                        <p class="product-price">659 ₽</p>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-placeholder">🕯️</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">B'TON Свеча контейнерная, стекло, дерево, 150 мл</h3>
-                        <p class="product-code">Артикул: 10004-150-001</p>
-                        <p class="product-price">530 ₽</p>
-                    </div>
-                </div>
-
-                <!-- Product 5 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-placeholder">🕯️</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">B'TON Свеча контейнерная, керамика, дерево, 150 мл</h3>
-                        <p class="product-code">Артикул: 10005-150-001</p>
-                        <p class="product-price">530 ₽</p>
-                    </div>
-                </div>
-
-                <!-- Product 6 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-placeholder">🕯️</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">B'TON Свеча контейнерная, бетон, дерево, 150 мл</h3>
-                        <p class="product-code">Артикул: 10006-150-001</p>
-                        <p class="product-price">634 ₽</p>
-                    </div>
-                </div>
+      <div class="container">
+        <h2 class="section-title">Каталог</h2>
+        <div class="products-grid">
+          <!-- Product 1 -->
+          <div class="product-card">
+            <div class="product-image"><span class="product-placeholder">🕯️</span></div>
+            <div class="product-info">
+              <h3 class="product-name">B'TON Свеча контейнерная, алюминий, хлопок, 10 мл</h3>
+              <p class="product-code">Артикул: 10001-010-001</p>
+              <p class="product-price">287 ₽</p>
             </div>
+          </div>
+          <!-- Product 2 -->
+          <div class="product-card">
+            <div class="product-image"><span class="product-placeholder">🕯️</span></div>
+            <div class="product-info">
+              <h3 class="product-name">B'TON Свеча контейнерная, бетон, хлопок, 100 мл</h3>
+              <p class="product-code">Артикул: 10002-100-001</p>
+              <p class="product-price">488 ₽</p>
+            </div>
+          </div>
+          <!-- Product 3 -->
+          <div class="product-card">
+            <div class="product-image"><span class="product-placeholder">🕯️</span></div>
+            <div class="product-info">
+              <h3 class="product-name">B'TON Свеча контейнерная, стекло, дерево, 125 мл</h3>
+              <p class="product-code">Артикул: 10003-125-001</p>
+              <p class="product-price">659 ₽</p>
+            </div>
+          </div>
+          <!-- Product 4 -->
+          <div class="product-card">
+            <div class="product-image"><span class="product-placeholder">🕯️</span></div>
+            <div class="product-info">
+              <h3 class="product-name">B'TON Свеча контейнерная, стекло, дерево, 150 мл</h3>
+              <p class="product-code">Артикул: 10004-150-001</p>
+              <p class="product-price">530 ₽</p>
+            </div>
+          </div>
+          <!-- Product 5 -->
+          <div class="product-card">
+            <div class="product-image"><span class="product-placeholder">🕯️</span></div>
+            <div class="product-info">
+              <h3 class="product-name">B'TON Свеча контейнерная, керамика, дерево, 150 мл</h3>
+              <p class="product-code">Артикул: 10005-150-001</p>
+              <p class="product-price">530 ₽</p>
+            </div>
+          </div>
+          <!-- Product 6 -->
+          <div class="product-card">
+            <div class="product-image"><span class="product-placeholder">🕯️</span></div>
+            <div class="product-info">
+              <h3 class="product-name">B'TON Свеча контейнерная, бетон, дерево, 150 мл</h3>
+              <p class="product-code">Артикул: 10006-150-001</p>
+              <p class="product-price">634 ₽</p>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
-
     <!-- About Section -->
     <section class="about" id="about">
-        <div class="container">
-            <h2 class="section-title">О бренде</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p><strong>Бренд B'TON</strong> — собственное производство изделий из бетона для дома и души.</p>
-
-                    <p>Только натуральное экологичное сырье премиального качества.</p>
-
-                    <p><strong>Бетон</strong> — долговечный материал, стойкий ко всем условиям. Обработан для дополнительной стойкости к влаге, чтобы вы могли использовать наши изделия для высаживания растений. Дарите изделию вторую жизнь.</p>
-
-                    <p><strong>Воск</strong> — только натуральные компоненты из сои и кокса, не образующие при сжигании вредных веществ.</p>
-
-                    <p><strong>Ароматы</strong> — гибкий подбор ароматов, не раздражающий своей интенсивностью Вас и Ваших питомцев.</p>
-                </div>
-
-                <div class="features">
-                    <div class="feature-item">
-                        <div class="feature-icon">🌿</div>
-                        <h3>Экологичность</h3>
-                        <p>Натуральные материалы</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">💎</div>
-                        <h3>Качество</h3>
-                        <p>Премиальное сырье</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">♻️</div>
-                        <h3>Долговечность</h3>
-                        <p>Вторая жизнь изделиям</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">✨</div>
-                        <h3>Ручная работа</h3>
-                        <p>Сделано с любовью</p>
-                    </div>
-                </div>
+      <div class="container">
+        <h2 class="section-title">О бренде</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p><strong>Бренд B'TON</strong> — собственное производство изделий из бетона для дома и души.</p>
+            <p>Только натуральное экологичное сырье премиального качества.</p>
+            <p>
+              <strong>Бетон</strong> — долговечный материал, стойкий ко всем условиям. Обработан для дополнительной стойкости к влаге, чтобы вы могли использовать наши изделия для высаживания растений. Дарите изделию вторую жизнь.
+            </p>
+            <p><strong>Воск</strong> — только натуральные компоненты из сои и кокса, не образующие при сжигании вредных веществ.</p>
+            <p><strong>Ароматы</strong> — гибкий подбор ароматов, не раздражающий своей интенсивностью Вас и Ваших питомцев.</p>
+          </div>
+          <div class="features" style="position: relative; left: 0px; top: 0px; width: 800px; height: 226.4px;">
+            <div class="feature-item" style="min-width: auto; width: 177.875px;">
+              <div class="feature-icon">🌿</div>
+              <h3>Экологичность</h3>
+              <p>Натуральные материалы</p>
             </div>
+            <div class="feature-item" style="width: 177.9px; position: relative; inset: 0px 0px 0px -78.5px; height: 224.2px;">
+              <div class="feature-icon">💎</div>
+              <h3>Качество</h3>
+              <p>Премиальное сырье</p>
+            </div>
+            <div class="feature-item" style="width: 177.9px; position: relative; height: 224.2px; inset: 0px 150px 0px -152.305px;">
+              <div class="feature-icon">♻️</div>
+              <h3>Долговечность</h3>
+              <p>Вторая жизнь изделиям</p>
+            </div>
+            <div class="feature-item" style="width: 177.875px; position: relative; left: 606.47px; top: -251.766px;">
+              <div class="feature-icon">✨</div>
+              <h3 style="position: relative; left: 0px; top: 0px; width: 129.6px; height: 28px;">Ручная работа</h3>
+              <p>Сделано с любовью</p>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
-
     <!-- Contacts Section -->
     <section class="contacts" id="contacts">
-        <div class="container">
-            <h2 class="section-title">Контакты</h2>
-            <div class="contacts-grid">
-                <div class="contact-item">
-                    <div class="contact-icon">📱</div>
-                    <h3>Телефон</h3>
-                    <a href="tel:+79152043382">+7 915 204-33-82</a>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">✉️</div>
-                    <h3>Email</h3>
-                    <a href="mailto:bton.main@yandex.ru">bton.main@yandex.ru</a>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">💬</div>
-                    <h3>Соцсети</h3>
-                    <a href="https://vk.ru/bton.store" target="_blank">vk.ru/bton.store</a>
-                </div>
-            </div>
+      <div class="container">
+        <h2 class="section-title">Контакты</h2>
+        <div class="contacts-grid">
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <h3>Телефон</h3>
+            <a href="tel:+79152043382">+7 915 204-33-82</a>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <h3>Email</h3>
+            <a href="mailto:bton.main@yandex.ru">bton.main@yandex.ru</a>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">💬</div>
+            <h3>Соцсети</h3>
+            <a href="https://vk.ru/bton.store" target="_blank" style="">vk.ru/bton.store</a>
+          </div>
         </div>
+      </div>
     </section>
-
     <!-- Footer -->
     <footer>
-        <div class="container footer-content">
-            <div class="footer-logo">B'TON</div>
-            <p class="footer-text">© 2024 B'TON. Все права защищены.</p>
-        </div>
+      <div class="container footer-content">
+        <div class="footer-logo">B'TON</div>
+        <p class="footer-text">© 2026 B'TON. Все права защищены.</p>
+      </div>
     </footer>
-
     <script>
         // Mobile menu toggle
         function toggleMenu() {
@@ -738,5 +699,6 @@
             }
         });
     </script>
-</body>
+  </body>
 </html>
+

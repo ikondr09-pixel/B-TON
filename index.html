@@ -1,834 +1,742 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>B'TON — свечи ручной работы и декор из бетона</title>
-<meta name="description" content="Мастерская авторских свечей из соевого воска и минималистичного декора из бетона. Ручная работа, экологичные материалы, доставка по России." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B'TON — изделия из бетона для дома</title>
+    <meta name="description" content="Свечи в бетонных контейнерах ручной работы. Натуральный воск, ароматы премиум качества.">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/playfair-display@latest/cyrillic-400.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/playfair-display@latest/cyrillic-600.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/playfair-display@latest/cyrillic-700.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/manrope@latest/cyrillic-400.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/manrope@latest/cyrillic-500.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/manrope@latest/cyrillic-600.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/manrope@latest/cyrillic-700.css" />
+    <!-- Подключение шрифта JOST -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
-  :root{
-    --bg:#f4efe7;
-    --bg-2:#ece3d6;
-    --surface:#fffdf8;
-    --ink:#2a2622;
-    --muted:#756b60;
-    --line:#ddd2c2;
-    --accent:#b9744a;
-    --accent-dark:#9c5d38;
-    --concrete:#8c8a84;
-    --shadow:0 18px 40px -22px rgba(42,38,34,.45);
-    --shadow-sm:0 8px 22px -14px rgba(42,38,34,.4);
-    --serif:'Playfair Display', Georgia, serif;
-    --sans:'Manrope', system-ui, sans-serif;
-    --radius:18px;
-    --maxw:1200px;
-  }
+    <style>
+        :root {
+            --gray-light: #f5f5f5;
+            --gray-medium: #9e9e9e;
+            --gray-dark: #4a4a4a;
+            --white: #ffffff;
+            --orange: #ff6b35;
+            --orange-gradient: linear-gradient(135deg, #ff8c42 0%, #ff6b35 50%, #ff4500 100%);
+            --gray-gradient: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 50%, #b8b8b8 100%);
+            --concrete-gradient: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #cccccc 100%);
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
 
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:var(--sans);
-    color:var(--ink);
-    background:var(--bg);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  img{max-width:100%;display:block}
-  a{color:inherit;text-decoration:none}
-  button{font-family:inherit;cursor:pointer;border:none;background:none}
-  ul{list-style:none}
-  section{scroll-margin-top:88px}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+        html {
+            scroll-behavior: smooth;
+        }
 
-  h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.12;letter-spacing:-.01em}
-  h2{font-size:clamp(1.9rem,4vw,3rem)}
-  h3{font-size:1.35rem}
+        body {
+            font-family: 'Jost', sans-serif;
+            color: var(--gray-dark);
+            background: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-  .eyebrow{
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--accent-dark);font-weight:600;margin-bottom:14px;
-  }
-  .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent)}
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
 
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:10px;
-    padding:14px 26px;border-radius:999px;font-weight:600;font-size:.95rem;
-    transition:transform .25s ease, background .25s ease, color .25s ease, box-shadow .25s ease;
-    white-space:nowrap;
-  }
-  .btn-primary{background:var(--ink);color:#fff}
-  .btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
-  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
-  .btn-ghost:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
-  .btn-light{background:var(--surface);color:var(--ink)}
-  .btn-light:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+        ul {
+            list-style: none;
+        }
 
-  /* ===== HEADER ===== */
-  header{
-    position:fixed;top:0;left:0;right:0;z-index:60;
-    transition:background .3s ease, box-shadow .3s ease, padding .3s ease;
-    padding:18px 0;
-  }
-  header.scrolled{background:rgba(244,239,231,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);padding:12px 0}
-  .nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
-  .logo{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:1.35rem;font-weight:700}
-  .logo .mark{
-    width:38px;height:38px;border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #e8a26a, var(--accent) 55%, var(--accent-dark));
-    display:grid;place-items:center;color:#fff;font-size:1.1rem;box-shadow:inset 0 -4px 8px rgba(0,0,0,.2);
-  }
-  .logo small{display:block;font-family:var(--sans);font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);font-weight:600}
-  .menu{display:flex;gap:30px;align-items:center}
-  .menu a{font-size:.92rem;font-weight:500;color:var(--ink);position:relative;padding:4px 0}
-  .menu a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:var(--accent);transition:width .3s ease}
-  .menu a:hover::after{width:100%}
-  .nav-actions{display:flex;align-items:center;gap:14px}
-  .cart-btn{position:relative;width:46px;height:46px;border-radius:50%;background:var(--surface);display:grid;place-items:center;box-shadow:var(--shadow-sm);transition:transform .2s}
-  .cart-btn:hover{transform:scale(1.06)}
-  .cart-count{
-    position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;
-    background:var(--accent);color:#fff;font-size:.7rem;font-weight:700;display:grid;place-items:center;
-    transform:scale(0);transition:transform .25s cubic-bezier(.34,1.56,.64,1);
-  }
-  .cart-count.show{transform:scale(1)}
-  .burger{display:none;flex-direction:column;gap:5px;width:42px;height:42px;border-radius:50%;background:var(--surface);align-items:center;justify-content:center;box-shadow:var(--shadow-sm)}
-  .burger span{width:18px;height:2px;background:var(--ink);transition:.3s}
-  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-  .burger.open span:nth-child(2){opacity:0}
-  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+        section {
+            scroll-margin-top: 80px;
+        }
 
-  /* ===== HERO ===== */
-  .hero{padding:140px 0 70px;position:relative}
-  .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:50px;align-items:center}
-  .hero h1{font-size:clamp(2.6rem,6vw,4.6rem);margin-bottom:22px}
-  .hero h1 em{font-style:italic;color:var(--accent-dark)}
-  .hero p.lead{font-size:1.12rem;color:var(--muted);max-width:480px;margin-bottom:32px}
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:42px}
-  .hero-stats{display:flex;gap:38px;flex-wrap:wrap}
-  .stat .num{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--ink)}
-  .stat .lbl{font-size:.82rem;color:var(--muted)}
-  .hero-img{position:relative}
-  .hero-img img{border-radius:26px;box-shadow:var(--shadow);aspect-ratio:1/1;object-fit:cover}
-  .hero-badge{
-    position:absolute;left:-18px;bottom:30px;background:var(--surface);border-radius:16px;padding:16px 20px;
-    box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;max-width:230px;
-  }
-  .hero-badge .dot{width:42px;height:42px;border-radius:50%;background:var(--bg-2);display:grid;place-items:center;font-size:1.3rem;flex-shrink:0}
-  .hero-badge b{font-size:.9rem}
-  .hero-badge span{font-size:.78rem;color:var(--muted)}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-  /* ===== MARQUEE ===== */
-  .marquee{background:var(--ink);color:var(--bg);padding:18px 0;overflow:hidden;margin-top:30px}
-  .marquee-track{display:flex;gap:48px;white-space:nowrap;animation:scroll 28s linear infinite;width:max-content}
-  .marquee span{font-family:var(--serif);font-size:1.4rem;font-style:italic;display:flex;align-items:center;gap:48px}
-  .marquee span::after{content:"✦";color:var(--accent);font-style:normal}
-  @keyframes scroll{to{transform:translateX(-50%)}}
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            padding: 15px 0;
+        }
 
-  /* ===== SECTION HEAD ===== */
-  .sec{padding:96px 0}
-  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:48px;flex-wrap:wrap}
-  .sec-head p{max-width:420px;color:var(--muted)}
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-  /* ===== CATALOG ===== */
-  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:38px}
-  .filter{padding:10px 22px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);font-weight:600;font-size:.88rem;color:var(--muted);transition:.25s}
-  .filter:hover{border-color:var(--ink);color:var(--ink)}
-  .filter.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            background: var(--orange-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-  .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:26px}
-  .card{
-    background:var(--surface);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;
-    box-shadow:var(--shadow-sm);transition:transform .35s ease, box-shadow .35s ease;position:relative;
-  }
-  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-  .card-img{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--bg-2)}
-  .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-  .card:hover .card-img img{transform:scale(1.06)}
-  .badge{position:absolute;top:14px;left:14px;background:var(--ink);color:#fff;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px;font-weight:600}
-  .badge.new{background:var(--accent)}
-  .fav{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;background:rgba(255,253,248,.9);display:grid;place-items:center;font-size:1rem;transition:.2s;color:var(--muted)}
-  .fav:hover{transform:scale(1.1)}
-  .fav.liked{color:#d05a4a}
-  .card-body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1}
-  .card-cat{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--concrete);font-weight:600}
-  .card-body h3{font-size:1.18rem}
-  .card-desc{font-size:.86rem;color:var(--muted);flex:1}
-  .card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:10px}
-  .price{font-family:var(--serif);font-size:1.3rem;font-weight:700}
-  .add-btn{
-    width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;
-    font-size:1.3rem;transition:.25s;flex-shrink:0;
-  }
-  .add-btn:hover{background:var(--accent-dark);transform:rotate(90deg)}
+        nav ul {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
 
-  /* ===== ABOUT ===== */
-  .about{background:var(--bg-2)}
-  .about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:54px;align-items:center}
-  .about-img{border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
-  .about-img img{aspect-ratio:4/5;object-fit:cover;width:100%}
-  .about h2{margin-bottom:20px}
-  .about p{color:var(--muted);margin-bottom:16px}
-  .feat-list{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
-  .feat{display:flex;gap:12px;align-items:flex-start}
-  .feat .ic{width:40px;height:40px;border-radius:12px;background:var(--surface);display:grid;place-items:center;font-size:1.1rem;flex-shrink:0;box-shadow:var(--shadow-sm)}
-  .feat b{display:block;font-size:.95rem}
-  .feat span{font-size:.82rem;color:var(--muted)}
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+        }
 
-  /* ===== PROCESS ===== */
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-  .step{background:var(--surface);border-radius:var(--radius);padding:30px 26px;position:relative;box-shadow:var(--shadow-sm)}
-  .step .n{font-family:var(--serif);font-size:2.6rem;color:var(--bg-2);font-weight:700;line-height:1;margin-bottom:14px}
-  .step h3{font-size:1.15rem;margin-bottom:8px}
-  .step p{font-size:.88rem;color:var(--muted)}
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--orange-gradient);
+            transition: width 0.3s ease;
+        }
 
-  /* ===== REVIEWS ===== */
-  .reviews{background:var(--bg-2)}
-  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-  .rev{background:var(--surface);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:16px}
-  .stars{color:var(--accent);letter-spacing:2px}
-  .rev p{color:var(--ink);font-size:.95rem;flex:1}
-  .rev-author{display:flex;align-items:center;gap:12px}
-  .rev-author .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;display:grid;place-items:center;font-weight:700}
-  .rev-author b{font-size:.92rem;display:block}
-  .rev-author span{font-size:.78rem;color:var(--muted)}
+        nav a:hover::after {
+            width: 100%;
+        }
 
-  /* ===== FAQ ===== */
-  .faq-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
-  .faq-item{background:var(--surface);border-radius:14px;box-shadow:var(--shadow-sm);overflow:hidden}
-  .faq-q{width:100%;text-align:left;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:600;font-size:1.02rem}
-  .faq-q .pl{font-size:1.5rem;color:var(--accent);transition:transform .3s;flex-shrink:0}
-  .faq-item.open .pl{transform:rotate(45deg)}
-  .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
-  .faq-a p{padding:0 26px 22px;color:var(--muted);font-size:.92rem}
+        .header-socials {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
 
-  /* ===== ORDER / CONTACT ===== */
-  .order{background:var(--ink);color:var(--bg);border-radius:32px;margin:0 24px;padding:64px;position:relative;overflow:hidden}
-  .order::before{content:"";position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(185,116,74,.4),transparent 70%)}
-  .order-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;position:relative;z-index:1}
-  .order h2{color:#fff}
-  .order .eyebrow{color:#e8a26a}
-  .order .eyebrow::before{background:#e8a26a}
-  .order p{color:rgba(244,239,231,.75);margin:14px 0 28px}
-  .contacts{display:flex;flex-direction:column;gap:16px}
-  .contact-row{display:flex;align-items:center;gap:14px}
-  .contact-row .ic{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.08);display:grid;place-items:center;font-size:1.1rem}
-  .contact-row span{font-size:.78rem;color:rgba(244,239,231,.6);display:block}
-  .contact-row b{font-weight:600}
-  .socials{display:flex;gap:12px;margin-top:24px}
-  .socials a{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:.25s}
-  .socials a:hover{background:var(--accent);transform:translateY(-3px)}
-  form{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:30px;display:flex;flex-direction:column;gap:16px}
-  .field label{display:block;font-size:.78rem;color:rgba(244,239,231,.7);margin-bottom:6px;letter-spacing:.05em}
-  .field input,.field textarea,.field select{
-    width:100%;padding:13px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.15);
-    background:rgba(255,255,255,.06);color:#fff;font-family:inherit;font-size:.95rem;transition:.2s;
-  }
-  .field input::placeholder,.field textarea::placeholder{color:rgba(244,239,231,.4)}
-  .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--accent);background:rgba(255,255,255,.1)}
-  .field textarea{resize:vertical;min-height:90px}
-  .field select option{color:#222}
-  form .btn{margin-top:6px}
-  .form-note{font-size:.74rem;color:rgba(244,239,231,.5);text-align:center}
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gray-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
 
-  /* ===== FOOTER ===== */
-  footer{padding:60px 0 30px;margin-top:80px}
-  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px}
-  .foot-col h4{font-family:var(--sans);font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
-  .foot-col a{display:block;font-size:.92rem;margin-bottom:10px;color:var(--ink);transition:.2s}
-  .foot-col a:hover{color:var(--accent-dark)}
-  .foot-about p{color:var(--muted);font-size:.9rem;margin-top:14px;max-width:280px}
-  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.82rem;color:var(--muted)}
+        .social-icon:hover {
+            background: var(--orange-gradient);
+            transform: translateY(-3px);
+        }
 
-  /* ===== CART DRAWER ===== */
-  .overlay{position:fixed;inset:0;background:rgba(42,38,34,.5);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:.3s;z-index:80}
-  .overlay.show{opacity:1;visibility:visible}
-  .drawer{
-    position:fixed;top:0;right:0;height:100%;width:min(420px,100%);background:var(--bg);z-index:90;
-    transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;
-    box-shadow:-20px 0 50px -30px rgba(0,0,0,.5);
-  }
-  .drawer.show{transform:translateX(0)}
-  .drawer-head{padding:24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
-  .drawer-head h3{font-size:1.4rem}
-  .close-x{width:40px;height:40px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-size:1.2rem;box-shadow:var(--shadow-sm)}
-  .drawer-body{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:16px}
-  .cart-empty{text-align:center;color:var(--muted);padding:60px 20px;display:flex;flex-direction:column;align-items:center;gap:14px}
-  .cart-empty .em{font-size:3rem}
-  .cart-item{display:flex;gap:14px;background:var(--surface);border-radius:14px;padding:12px;box-shadow:var(--shadow-sm)}
-  .cart-item img{width:72px;height:72px;border-radius:10px;object-fit:cover;flex-shrink:0}
-  .ci-info{flex:1;display:flex;flex-direction:column;gap:6px}
-  .ci-info b{font-size:.92rem;font-family:var(--serif)}
-  .ci-info .ci-price{font-size:.85rem;color:var(--accent-dark);font-weight:600}
-  .ci-ctrl{display:flex;align-items:center;gap:10px;margin-top:auto}
-  .qty{display:flex;align-items:center;gap:8px;background:var(--bg-2);border-radius:999px;padding:4px}
-  .qty button{width:24px;height:24px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-size:.9rem;font-weight:700}
-  .qty span{font-size:.85rem;font-weight:600;min-width:14px;text-align:center}
-  .ci-remove{margin-left:auto;color:var(--muted);font-size:.78rem;text-decoration:underline}
-  .ci-remove:hover{color:#d05a4a}
-  .drawer-foot{padding:24px;border-top:1px solid var(--line);background:var(--bg-2)}
-  .total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-  .total-row.grand{font-family:var(--serif);font-size:1.3rem;font-weight:700;margin:14px 0 18px}
-  .total-row span:first-child{color:var(--muted);font-size:.9rem}
-  .drawer-foot .btn{width:100%}
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            width: 30px;
+        }
 
-  /* ===== TOAST ===== */
-  .toast{
-    position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(120px);
-    background:var(--ink);color:#fff;padding:14px 24px;border-radius:999px;font-size:.9rem;font-weight:500;
-    box-shadow:var(--shadow);z-index:100;display:flex;align-items:center;gap:10px;transition:transform .4s cubic-bezier(.34,1.56,.64,1);
-  }
-  .toast.show{transform:translateX(-50%) translateY(0)}
-  .toast .em{font-size:1.1rem}
+        .burger span {
+            width: 100%;
+            height: 2px;
+            background: var(--gray-dark);
+            transition: 0.3s;
+        }
 
-  /* ===== BACK TO TOP ===== */
-  .to-top{
-    position:fixed;bottom:28px;right:28px;width:50px;height:50px;border-radius:50%;background:var(--ink);color:#fff;
-    display:grid;place-items:center;font-size:1.2rem;z-index:50;opacity:0;visibility:hidden;transform:translateY(20px);
-    transition:.3s;box-shadow:var(--shadow);
-  }
-  .to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
-  .to-top:hover{background:var(--accent-dark)}
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--concrete-gradient);
+            padding: 120px 20px 80px;
+            position: relative;
+            overflow: hidden;
+        }
 
-  /* ===== REVEAL ===== */
-  .reveal{opacity:0;transform:translateY(34px);transition:opacity .7s ease, transform .7s ease}
-  .reveal.visible{opacity:1;transform:none}
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
 
-  /* ===== RESPONSIVE ===== */
-  @media(max-width:960px){
-    .hero-grid,.about-grid,.order-grid{grid-template-columns:1fr;gap:40px}
-    .steps{grid-template-columns:1fr 1fr}
-    .rev-grid{grid-template-columns:1fr}
-    .foot-grid{grid-template-columns:1fr 1fr}
-    .order{padding:40px 28px}
-    .menu{
-      position:fixed;top:0;right:0;height:100%;width:min(300px,80%);background:var(--bg);flex-direction:column;
-      align-items:flex-start;justify-content:center;padding:40px;gap:24px;transform:translateX(100%);transition:.4s;z-index:70;box-shadow:var(--shadow);
-    }
-    .menu.open{transform:translateX(0)}
-    .menu a{font-size:1.2rem;font-family:var(--serif)}
-    .burger{display:flex;z-index:75}
-  }
-  @media(max-width:560px){
-    .sec{padding:70px 0}
-    .steps{grid-template-columns:1fr}
-    .feat-list{grid-template-columns:1fr}
-    .foot-grid{grid-template-columns:1fr}
-    .hero-stats{gap:24px}
-    .hero-badge{left:10px}
-  }
-</style>
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 300;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content h1 span {
+            font-weight: 700;
+            background: var(--orange-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            color: var(--gray-medium);
+            margin-bottom: 60px;
+        }
+
+        .scroll-arrow {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-arrow svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--orange);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* ===== CATALOG ===== */
+        .catalog {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--orange-gradient);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-light);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            background: var(--concrete-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .product-placeholder {
+            font-size: 4rem;
+            opacity: 0.3;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .product-code {
+            font-size: 0.85rem;
+            color: var(--gray-medium);
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            background: var(--orange-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ===== ABOUT ===== */
+        .about {
+            padding: 100px 0;
+            background: var(--gray-light);
+            position: relative;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--gray-dark);
+        }
+
+        .about-text p {
+            margin-bottom: 25px;
+        }
+
+        .about-text strong {
+            font-weight: 600;
+            color: var(--orange);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: var(--orange-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+        }
+
+        /* ===== CONTACTS ===== */
+        .contacts {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: var(--gray-light);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: var(--orange-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .contact-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .contact-item a,
+        .contact-item p {
+            font-size: 1rem;
+            color: var(--gray-dark);
+        }
+
+        .contact-item a:hover {
+            color: var(--orange);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--gray-dark);
+            color: var(--white);
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--orange-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .burger {
+                display: flex;
+            }
+
+            .header-socials {
+                display: none;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .contacts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">B'TON</a>
 
-<!-- HEADER -->
-<header id="header">
-  <div class="wrap nav">
-    <a href="#top" class="logo">
-      <span class="mark">✦</span>
-      <span>B'TON<small>мастерская декора</small></span>
-    </a>
-    <nav class="menu" id="menu">
-      <a href="#catalog">Каталог</a>
-      <a href="#about">О мастерской</a>
-      <a href="#process">Как создаём</a>
-      <a href="#reviews">Отзывы</a>
-      <a href="#faq">Вопросы</a>
-      <a href="#order">Контакты</a>
-    </nav>
-    <div class="nav-actions">
-      <button class="cart-btn" id="cartBtn" aria-label="Корзина">
-        🛒<span class="cart-count" id="cartCount">0</span>
-      </button>
-      <button class="burger" id="burger" aria-label="Меню">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</header>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#hero">Главная</a></li>
+                    <li><a href="#catalog">Каталог</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="wrap hero-grid">
-    <div class="reveal">
-      <span class="eyebrow">Ручная работа · с 2019 года</span>
-      <h1>Тепло свечи<br>и характер <em>бетона</em></h1>
-      <p class="lead">Создаём авторские свечи из натурального соевого воска и минималистичный декор из архитектурного бетона. Каждое изделие — маленькая скульптура для вашего дома.</p>
-      <div class="hero-cta">
-        <a href="#catalog" class="btn btn-primary">Смотреть каталог →</a>
-        <a href="#order" class="btn btn-ghost">Индивидуальный заказ</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><div class="num">1200+</div><div class="lbl">довольных клиентов</div></div>
-        <div class="stat"><div class="num">40+</div><div class="lbl">ароматов и форм</div></div>
-        <div class="stat"><div class="num">100%</div><div class="lbl">эко-материалы</div></div>
-      </div>
-    </div>
-    <div class="hero-img reveal">
-      <img src="https://image.qwenlm.ai/public_source/e3affe3a-e04a-4286-95e0-7f2c41e62f0c/14f2f7112-336b-491c-98c4-f6982e6554a6.png" alt="Свечи в бетонных подсвечниках на столе" />
-      <div class="hero-badge">
-        <span class="dot">🌿</span>
-        <div><b>Соевый воск</b><span>без парафина и токсинов</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+            <div class="header-socials">
+                <a href="https://vk.ru/bton.store" target="_blank" class="social-icon" title="ВКонтакте">VK</a>
+                <a href="mailto:bton.main@yandex.ru" class="social-icon" title="Email">@</a>
+                <a href="tel:+79152043382" class="social-icon" title="Телефон">📞</a>
+            </div>
 
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span>соевый воск</span><span>архитектурный бетон</span><span>хлопковый фитиль</span><span>ручная отливка</span><span>авторские ароматы</span><span>подарочная упаковка</span>
-    <span>соевый воск</span><span>архитектурный бетон</span><span>хлопковый фитиль</span><span>ручная отливка</span><span>авторские ароматы</span><span>подарочная упаковка</span>
-  </div>
-</div>
-
-<!-- CATALOG -->
-<section class="sec" id="catalog">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <span class="eyebrow">Коллекция</span>
-        <h2>Каталог изделий</h2>
-      </div>
-      <p>Свечи, которые хочется зажигать каждый вечер, и бетонный декор, который переживёт любые тренды.</p>
-    </div>
-
-    <div class="filters reveal" id="filters">
-      <button class="filter active" data-filter="all">Все изделия</button>
-      <button class="filter" data-filter="candle">Свечи</button>
-      <button class="filter" data-filter="concrete">Бетон</button>
-      <button class="filter" data-filter="set">Наборы</button>
-    </div>
-
-    <div class="products" id="products"></div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="sec about" id="about">
-  <div class="wrap about-grid">
-    <div class="about-img reveal">
-      <img src="https://image.qwenlm.ai/public_source/e3affe3a-e04a-4286-95e0-7f2c41e62f0c/1198f3c44-e24f-4461-b80b-d01a652a6d83.png" alt="Мастерская: отливка изделий" />
-    </div>
-    <div class="reveal">
-      <span class="eyebrow">О мастерской</span>
-      <h2>Мы соединяем огонь и камень</h2>
-      <p>«Пламя &amp; Камень» — это небольшая семейная мастерская, где рождаются вещи с душой. Мы сами замешиваем бетон, сами подбираем парфюмерные композиции и сами заливаем воск в формы.</p>
-      <p>Наш бетон — архитектурный, с бархатистой фактурой и тёплым серым оттенком. А свечи горят чисто и долго, наполняя дом натуральным ароматом.</p>
-      <div class="feat-list">
-        <div class="feat"><span class="ic">🕯️</span><div><b>Чистое горение</b><span>хлопковый фитиль, без копоти</span></div></div>
-        <div class="feat"><span class="ic">🪨</span><div><b>Прочный бетон</b><span>покрытие от влаги и пятен</span></div></div>
-        <div class="feat"><span class="ic">🎁</span><div><b>Подарочный бокс</b><span>крафт-упаковка в комплекте</span></div></div>
-        <div class="feat"><span class="ic">🚚</span><div><b>Доставка по РФ</b><span>надёжная защита при отправке</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section class="sec" id="process">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <span class="eyebrow">Процесс</span>
-        <h2>Как создаётся изделие</h2>
-      </div>
-      <p>От идеи до готовой вещи — четыре шага и пара десятков часов ручной работы.</p>
-    </div>
-    <div class="steps">
-      <div class="step reveal"><div class="n">01</div><h3>Замес бетона</h3><p>Подбираем пропорции и пигмент, чтобы получить нужную фактуру и оттенок.</p></div>
-      <div class="step reveal"><div class="n">02</div><h3>Отливка формы</h3><p>Заливаем в силиконовые формы, выдерживаем и вручную шлифуем каждую деталь.</p></div>
-      <div class="step reveal"><div class="n">03</div><h3>Заливка воска</h3><p>Плавим соевый воск, добавляем аромамасла и заливаем в готовое бетонное кашпо.</p></div>
-      <div class="step reveal"><div class="n">04</div><h3>Упаковка</h3><p>Проверяем качество, ставим фитиль и бережно упаковываем в подарочный бокс.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- REVIEWS -->
-<section class="sec reviews" id="reviews">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <span class="eyebrow">Отзывы</span>
-        <h2>Что говорят клиенты</h2>
-      </div>
-      <p>Более тысячи отзывов в соцсетях и на маркетплейсах — делимся самыми тёплыми.</p>
-    </div>
-    <div class="rev-grid">
-      <div class="rev reveal">
-        <div class="stars">★★★★★</div>
-        <p>«Заказала набор „Утро“ в подарок маме — упаковка как с картинки, а аромат хвои просто волшебный. Бетонные стаканчики потом используем как кашпо!»</p>
-        <div class="rev-author"><div class="av">А</div><div><b>Анна К.</b><span>Москва</span></div></div>
-      </div>
-      <div class="rev reveal">
-        <div class="stars">★★★★★</div>
-        <p>«Кашпо „Куб“ идеально вписалось в лофт-интерьер. Видно, что сделано руками — фактура живая, без фабричной стерильности. Буду брать ещё.»</p>
-        <div class="rev-author"><div class="av">Д</div><div><b>Дмитрий В.</b><span>Санкт-Петербург</span></div></div>
-      </div>
-      <div class="rev reveal">
-        <div class="stars">★★★★★</div>
-        <p>«Свеча „Тёплый плед“ горит уже третью неделю и пахнет как уютный вечер у камина. Доставка быстрая, всё доехало целым. Спасибо мастерской!»</p>
-        <div class="rev-author"><div class="av">М</div><div><b>Мария Л.</b><span>Казань</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="sec" id="faq">
-  <div class="wrap">
-    <div class="sec-head reveal" style="justify-content:center;text-align:center;flex-direction:column;align-items:center">
-      <span class="eyebrow">Вопросы и ответы</span>
-      <h2>Частые вопросы</h2>
-    </div>
-    <div class="faq-list reveal" id="faqList">
-      <div class="faq-item">
-        <button class="faq-q">Из какого воска сделаны свечи?<span class="pl">+</span></button>
-        <div class="faq-a"><p>Мы используем 100% натуральный соевый воск и хлопковые фитили. Такой состав горит чисто, без копоти и вредных испарений, а время горения на 30–50% дольше парафиновых аналогов.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Можно ли использовать бетонный стаканчик после свечи?<span class="pl">+</span></button>
-        <div class="faq-a"><p>Конечно! Это одна из главных идей мастерской. После того как свеча догорит, стаканчик легко очистить и использовать как кашпо для суккулентов, органайзер или подсвечник для чайных свечей.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Как осуществляется доставка?<span class="pl">+</span></button>
-        <div class="faq-a"><p>Отправляем СДЭК, Почтой России и Boxberry по всей стране. Бетонные изделия упаковываем в несколько слоёв защиты. По Москве и СПб доступен курьер и самовывоз из мастерской.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Можно ли заказать изделие по своему дизайну?<span class="pl">+</span></button>
-        <div class="faq-a"><p>Да, мы делаем корпоративные и индивидуальные заказы: свой аромат, гравировка, форма, цвет бетона и брендированная упаковка. Напишите нам в форме ниже — обсудим детали.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Сколько горит одна свеча?<span class="pl">+</span></button>
-        <div class="faq-a"><p>Свеча в бетонном стаканчике (≈180 г воска) горит около 35–40 часов. Мини-свечи из наборов — по 12–15 часов каждая. Рекомендуем не оставлять горящую свечу без присмотра.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ORDER / CONTACT -->
-<section id="order" style="padding:40px 0">
-  <div class="order reveal">
-    <div class="order-grid">
-      <div>
-        <span class="eyebrow">Свяжитесь с нами</span>
-        <h2>Оформим заказ или создадим изделие для вас</h2>
-        <p>Оставьте заявку — мы перезвоним в течение часа, поможем выбрать аромат и рассчитаем индивидуальный заказ.</p>
-        <div class="contacts">
-          <div class="contact-row"><span class="ic">📞</span><div><span>Телефон / WhatsApp</span><b>+7 (999) 123-45-67</b></div></div>
-          <div class="contact-row"><span class="ic">✉️</span><div><span>Почта</span><b>hello@plamya-kamen.ru</b></div></div>
-          <div class="contact-row"><span class="ic">📍</span><div><span>Мастерская</span><b>Москва, ул. Ремесленная, 12</b></div></div>
-          <div class="contact-row"><span class="ic">🕒</span><div><span>Часы работы</span><b>Пн–Сб · 10:00 – 20:00</b></div></div>
+            <div class="burger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        <div class="socials">
-          <a href="#" aria-label="Telegram">✈️</a>
-          <a href="#" aria-label="Instagram">📷</a>
-          <a href="#" aria-label="VK">💬</a>
-          <a href="#" aria-label="Pinterest">📌</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>Уют начинается<br>с <span>мелочей</span></h1>
+            <p>мелочи начинаются с нас</p>
         </div>
-      </div>
+        <a href="#catalog" class="scroll-arrow">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 16l-6-6h12l-6 6z"/>
+            </svg>
+        </a>
+    </section>
 
-      <form id="orderForm">
-        <div class="field">
-          <label for="nm">Ваше имя</label>
-          <input id="nm" type="text" placeholder="Как к вам обращаться" required />
+    <!-- Catalog Section -->
+    <section class="catalog" id="catalog">
+        <div class="container">
+            <h2 class="section-title">Каталог</h2>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-placeholder">🕯️</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">B'TON Свеча контейнерная, алюминий, хлопок, 10 мл</h3>
+                        <p class="product-code">Артикул: 10001-010-001</p>
+                        <p class="product-price">от 500 ₽</p>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-placeholder">🕯️</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">B'TON Свеча контейнерная, бетон, хлопок, 100 мл</h3>
+                        <p class="product-code">Артикул: 10002-100-001</p>
+                        <p class="product-price">от 1 200 ₽</p>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-placeholder">🕯️</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">B'TON Свеча контейнерная, стекло, дерево, 125 мл</h3>
+                        <p class="product-code">Артикул: 10003-125-001</p>
+                        <p class="product-price">от 1 400 ₽</p>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-placeholder">🕯️</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">B'TON Свеча контейнерная, стекло, дерево, 150 мл</h3>
+                        <p class="product-code">Артикул: 10004-150-001</p>
+                        <p class="product-price">от 1 600 ₽</p>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-placeholder">🕯️</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">B'TON Свеча контейнерная, керамика, дерево, 150 мл</h3>
+                        <p class="product-code">Артикул: 10005-150-001</p>
+                        <p class="product-price">от 1 600 ₽</p>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-placeholder">🕯️</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">B'TON Свеча контейнерная, бетон, дерево, 150 мл</h3>
+                        <p class="product-code">Артикул: 10006-150-001</p>
+                        <p class="product-price">от 1 800 ₽</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="field">
-          <label for="ph">Телефон</label>
-          <input id="ph" type="tel" placeholder="+7 (___) ___-__-__" required />
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">О бренде</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>Бренд B'TON</strong> — собственное производство изделий из бетона для дома и души.</p>
+
+                    <p>Только натуральное экологичное сырье премиального качества.</p>
+
+                    <p><strong>Бетон</strong> — долговечный материал, стойкий ко всем условиям. Обработан для дополнительной стойкости к влаге, чтобы вы могли использовать наши изделия для высаживания растений. Дарите изделию вторую жизнь.</p>
+
+                    <p><strong>Воск</strong> — только натуральные компоненты из сои и кокса, не образующие при сжигании вредных веществ.</p>
+
+                    <p><strong>Ароматы</strong> — гибкий подбор ароматов, не раздражающий своей интенсивностью Вас и Ваших питомцев.</p>
+                </div>
+
+                <div class="features">
+                    <div class="feature-item">
+                        <div class="feature-icon">🌿</div>
+                        <h3>Экологичность</h3>
+                        <p>Натуральные материалы</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💎</div>
+                        <h3>Качество</h3>
+                        <p>Премиальное сырье</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">♻️</div>
+                        <h3>Долговечность</h3>
+                        <p>Вторая жизнь изделиям</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✨</div>
+                        <h3>Ручная работа</h3>
+                        <p>Сделано с любовью</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="field">
-          <label for="tp">Что вас интересует</label>
-          <select id="tp">
-            <option>Готовое изделие из каталога</option>
-            <option>Подарочный набор</option>
-            <option>Индивидуальный заказ</option>
-            <option>Корпоративный заказ</option>
-          </select>
+    </section>
+
+    <!-- Contacts Section -->
+    <section class="contacts" id="contacts">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contacts-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <h3>Телефон</h3>
+                    <a href="tel:+79152043382">+7 915 204-33-82</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email</h3>
+                    <a href="mailto:bton.main@yandex.ru">bton.main@yandex.ru</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💬</div>
+                    <h3>Соцсети</h3>
+                    <a href="https://vk.ru/bton.store" target="_blank">vk.ru/bton.store</a>
+                </div>
+            </div>
         </div>
-        <div class="field">
-          <label for="msg">Комментарий</label>
-          <textarea id="msg" placeholder="Расскажите о пожеланиях: аромат, цвет, сроки..."></textarea>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">B'TON</div>
+            <p class="footer-text">© 2024 B'TON. Все права защищены.</p>
         </div>
-        <button type="submit" class="btn btn-light">Отправить заявку →</button>
-        <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
-      </form>
-    </div>
-  </div>
-</section>
+    </footer>
 
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-col foot-about">
-        <a href="#top" class="logo"><span class="mark">✦</span><span>Пламя &amp; Камень</span></a>
-        <p>Мастерская авторских свечей и бетонного декора. Создаём уют своими руками с 2019 года.</p>
-      </div>
-      <div class="foot-col">
-        <h4>Каталог</h4>
-        <a href="#catalog">Свечи</a>
-        <a href="#catalog">Бетонный декор</a>
-        <a href="#catalog">Подарочные наборы</a>
-        <a href="#order">Индивидуальный заказ</a>
-      </div>
-      <div class="foot-col">
-        <h4>Информация</h4>
-        <a href="#about">О мастерской</a>
-        <a href="#process">Как создаём</a>
-        <a href="#faq">Вопросы и ответы</a>
-        <a href="#reviews">Отзывы</a>
-      </div>
-      <div class="foot-col">
-        <h4>Контакты</h4>
-        <a href="tel:+79991234567">+7 (999) 123-45-67</a>
-        <a href="mailto:hello@plamya-kamen.ru">hello@plamya-kamen.ru</a>
-        <a href="#order">Москва, ул. Ремесленная, 12</a>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>© 2026 «Пламя &amp; Камень». Все права защищены.</span>
-      <span>Сделано с теплом 🕯️</span>
-    </div>
-  </div>
-</footer>
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('active');
+        }
 
-<!-- CART DRAWER -->
-<div class="overlay" id="overlay"></div>
-<aside class="drawer" id="drawer" aria-label="Корзина">
-  <div class="drawer-head">
-    <h3>Ваша корзина</h3>
-    <button class="close-x" id="closeCart" aria-label="Закрыть">✕</button>
-  </div>
-  <div class="drawer-body" id="cartBody"></div>
-  <div class="drawer-foot" id="cartFoot" style="display:none">
-    <div class="total-row"><span>Товаров</span><span id="itemsQty">0 шт.</span></div>
-    <div class="total-row"><span>Доставка</span><span>рассчитаем при оформлении</span></div>
-    <div class="total-row grand"><span>Итого</span><span id="grandTotal">0 ₽</span></div>
-    <button class="btn btn-primary" id="checkoutBtn">Оформить заказ →</button>
-  </div>
-</aside>
+        // Close menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-menu').classList.remove('active');
+            });
+        });
 
-<!-- TOAST -->
-<div class="toast" id="toast"><span class="em">✓</span><span id="toastMsg">Добавлено в корзину</span></div>
-
-<!-- BACK TO TOP -->
-<button class="to-top" id="toTop" aria-label="Наверх">↑</button>
-
-<script>
-/* ===== DATA ===== */
-const PRODUCTS = [
-  {id:1, name:'Свеча «Тёплый плед»', cat:'candle', catLabel:'Свеча · 180 г', desc:'Аромат ванили, сандала и тёплого молока в бетонном стаканчике.', price:890, badge:'Хит', img:'https://image.qwenlm.ai/public_source/e3affe3a-e04a-4286-95e0-7f2c41e62f0c/17c67066c-f0fc-45b4-a4b4-e0f8545c2089.png'},
-  {id:2, name:'Набор «Хвоя и кедр»', cat:'set', catLabel:'Набор · 3 свечи', desc:'Три столбика из пчелиного воска на бетонной подставке.', price:1490, badge:'New', img:'https://image.qwenlm.ai/public_source/e3affe3a-e04a-4286-95e0-7f2c41e62f0c/1aa45e4d8-de6d-4743-a2c6-898bbf1122a2.png'},
-  {id:3, name:'Подарочный бокс «Утро»', cat:'set', catLabel:'Набор · 3 мини', desc:'Мини-свечи в бетоне с сухоцветами в крафт-коробке.', price:1690, badge:'', img:'https://image.qwenlm.ai/public_source/e3affe3a-e04a-4286-95e0-7f2c41e62f0c/16b1cc62a-6cb4-45cf-8100-a6197e6f3347.png'},
-  {id:4, name:'Кашпо «Куб»', cat:'concrete', catLabel:'Бетон · 9×9 см', desc:'Минималистичное кашпо для суккулентов с дренажным отверстием.', price:1290, badge:'', img:'https://image.qwenlm.ai/public_source/e3affe3a-e04a-4286-95e0-7f2c41e62f0c/187cdc240-36c6-4b18-bbfa-c3164004307e.png'},
-  {id:5, name:'Поднос «Луна»', cat:'concrete', catLabel:'Бетон · Ø20 см', desc:'Круглый поднос для мелочей, украшений и свечей.', price:790, badge:'Хит', img:'https://image.qwenlm.ai/public_source/e3affe3a-e04a-4286-95e0-7f2c41e62f0c/19976e138-bae6-4232-864c-2dc945cb77fe.png'},
-  {id:6, name:'Ваза «Дюна»', cat:'concrete', catLabel:'Бетон · 14 см', desc:'Скульптурная ваза для сухоцветов и веток пампасной травы.', price:1690, badge:'New', img:'https://image.qwenlm.ai/public_source/e3affe3a-e04a-4286-95e0-7f2c41e62f0c/14dff8977-62c3-4159-9845-42051159085e.png'}
-];
-
-const fmt = n => n.toLocaleString('ru-RU') + ' ₽';
-const cart = {};            // {id: qty}
-const favs = new Set();
-
-/* ===== RENDER PRODUCTS ===== */
-const productsEl = document.getElementById('products');
-function renderProducts(filter='all'){
-  const list = filter==='all' ? PRODUCTS : PRODUCTS.filter(p=>p.cat===filter);
-  productsEl.innerHTML = list.map(p=>`
-    <article class="card reveal visible" data-id="${p.id}">
-      <div class="card-img">
-        ${p.badge?`<span class="badge ${p.badge==='New'?'new':''}">${p.badge}</span>`:''}
-        <button class="fav ${favs.has(p.id)?'liked':''}" data-fav="${p.id}" aria-label="В избранное">${favs.has(p.id)?'♥':'♡'}</button>
-        <img src="${p.img}" alt="${p.name}" loading="lazy" />
-      </div>
-      <div class="card-body">
-        <span class="card-cat">${p.catLabel}</span>
-        <h3>${p.name}</h3>
-        <p class="card-desc">${p.desc}</p>
-        <div class="card-foot">
-          <span class="price">${fmt(p.price)}</span>
-          <button class="add-btn" data-add="${p.id}" aria-label="В корзину">+</button>
-        </div>
-      </div>
-    </article>`).join('');
-}
-renderProducts();
-
-/* ===== FILTERS ===== */
-document.getElementById('filters').addEventListener('click', e=>{
-  const btn = e.target.closest('.filter');
-  if(!btn) return;
-  document.querySelectorAll('.filter').forEach(f=>f.classList.remove('active'));
-  btn.classList.add('active');
-  renderProducts(btn.dataset.filter);
-});
-
-/* ===== FAV + ADD (delegation) ===== */
-productsEl.addEventListener('click', e=>{
-  const favBtn = e.target.closest('[data-fav]');
-  if(favBtn){
-    const id = +favBtn.dataset.fav;
-    if(favs.has(id)){favs.delete(id); favBtn.classList.remove('liked'); favBtn.textContent='♡';}
-    else{favs.add(id); favBtn.classList.add('liked'); favBtn.textContent='♥';}
-    return;
-  }
-  const addBtn = e.target.closest('[data-add]');
-  if(addBtn){ addToCart(+addBtn.dataset.add); }
-});
-
-/* ===== CART LOGIC ===== */
-const cartCountEl = document.getElementById('cartCount');
-const cartBody = document.getElementById('cartBody');
-const cartFoot = document.getElementById('cartFoot');
-
-function addToCart(id){
-  cart[id] = (cart[id]||0) + 1;
-  updateCart();
-  const p = PRODUCTS.find(x=>x.id===id);
-  showToast(`«${p.name.replace(/«|»/g,'')}» в корзине`);
-}
-function changeQty(id, d){
-  cart[id] = (cart[id]||0) + d;
-  if(cart[id] <= 0) delete cart[id];
-  updateCart();
-}
-function removeItem(id){ delete cart[id]; updateCart(); }
-
-function updateCart(){
-  const ids = Object.keys(cart);
-  const totalQty = ids.reduce((s,id)=>s+cart[id],0);
-  cartCountEl.textContent = totalQty;
-  cartCountEl.classList.toggle('show', totalQty>0);
-
-  if(ids.length===0){
-    cartBody.innerHTML = `<div class="cart-empty"><span class="em">️</span><p>Корзина пока пуста.<br>Загляните в каталог — там тепло.</p></div>`;
-    cartFoot.style.display='none';
-    return;
-  }
-  cartBody.innerHTML = ids.map(id=>{
-    const p = PRODUCTS.find(x=>x.id==id);
-    return `<div class="cart-item">
-      <img src="${p.img}" alt="${p.name}" />
-      <div class="ci-info">
-        <b>${p.name}</b>
-        <span class="ci-price">${fmt(p.price)}</span>
-        <div class="ci-ctrl">
-          <div class="qty">
-            <button data-dec="${id}">−</button>
-            <span>${cart[id]}</span>
-            <button data-inc="${id}">+</button>
-          </div>
-          <button class="ci-remove" data-rm="${id}">удалить</button>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-
-  const grand = ids.reduce((s,id)=>s + PRODUCTS.find(x=>x.id==id).price*cart[id],0);
-  document.getElementById('itemsQty').textContent = totalQty + ' шт.';
-  document.getElementById('grandTotal').textContent = fmt(grand);
-  cartFoot.style.display='block';
-}
-updateCart();
-
-cartBody.addEventListener('click', e=>{
-  const inc = e.target.closest('[data-inc]');
-  const dec = e.target.closest('[data-dec]');
-  const rm  = e.target.closest('[data-rm]');
-  if(inc) changeQty(+inc.dataset.inc, 1);
-  if(dec) changeQty(+dec.dataset.dec, -1);
-  if(rm)  removeItem(+rm.dataset.rm);
-});
-
-/* ===== DRAWER OPEN/CLOSE ===== */
-const drawer = document.getElementById('drawer');
-const overlay = document.getElementById('overlay');
-function openCart(){ drawer.classList.add('show'); overlay.classList.add('show'); document.body.style.overflow='hidden'; }
-function closeCart(){ drawer.classList.remove('show'); overlay.classList.remove('show'); document.body.style.overflow=''; }
-document.getElementById('cartBtn').addEventListener('click', openCart);
-document.getElementById('closeCart').addEventListener('click', closeCart);
-overlay.addEventListener('click', ()=>{ closeCart(); closeMenu(); });
-
-document.getElementById('checkoutBtn').addEventListener('click', ()=>{
-  for(const k in cart) delete cart[k];
-  updateCart();
-  closeCart();
-  showToast('Заказ оформлен! Мы свяжемся с вами 🕯️');
-});
-
-/* ===== TOAST ===== */
-const toast = document.getElementById('toast');
-const toastMsg = document.getElementById('toastMsg');
-let toastTimer;
-function showToast(msg){
-  toastMsg.textContent = msg;
-  toast.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>toast.classList.remove('show'), 2600);
-}
-
-/* ===== MOBILE MENU ===== */
-const burger = document.getElementById('burger');
-const menu = document.getElementById('menu');
-function closeMenu(){ menu.classList.remove('open'); burger.classList.remove('open'); }
-burger.addEventListener('click', ()=>{
-  menu.classList.toggle('open');
-  burger.classList.toggle('open');
-});
-menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
-
-/* ===== HEADER SCROLL + BACK TO TOP ===== */
-const header = document.getElementById('header');
-const toTop = document.getElementById('toTop');
-window.addEventListener('scroll', ()=>{
-  const y = window.scrollY;
-  header.classList.toggle('scrolled', y>40);
-  toTop.classList.toggle('show', y>600);
-});
-toTop.addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
-
-/* ===== FAQ ACCORDION ===== */
-document.getElementById('faqList').addEventListener('click', e=>{
-  const q = e.target.closest('.faq-q');
-  if(!q) return;
-  const item = q.parentElement;
-  const ans = item.querySelector('.faq-a');
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i=>{
-    i.classList.remove('open');
-    i.querySelector('.faq-a').style.maxHeight = null;
-  });
-  if(!isOpen){
-    item.classList.add('open');
-    ans.style.maxHeight = ans.scrollHeight + 'px';
-  }
-});
-
-/* ===== FORM SUBMIT ===== */
-document.getElementById('orderForm').addEventListener('submit', e=>{
-  e.preventDefault();
-  e.target.reset();
-  showToast('Заявка отправлена! Скоро перезвоним ✨');
-});
-
-/* ===== REVEAL ON SCROLL ===== */
-const io = new IntersectionObserver(entries=>{
-  entries.forEach(en=>{
-    if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); }
-  });
-}, {threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1314,9 +1314,13 @@
                 },
                 body: formBody.toString()
             })
-            .then(() => {
-                console.log('Order sent successfully (no-cors mode)');
-                alert('Спасибо за заказ! Мы свяжемся с вами в ближайшее время.');
+            .then(response => {
+                // В режиме no-cors мы не можем проверить статус, но запрос отправлен
+                console.log('Request sent. Note: In no-cors mode, we cannot verify the response.');
+                console.log('If you see this but orders are not saved, check GAS deployment settings:');
+                console.log('1. Execute as: Me (owner)');
+                console.log('2. Who has access: Anyone (not "Anyone with Google account")');
+                alert('Заказ отправлен! Если он не появился в таблице, проверьте настройки развертывания скрипта (должно быть "Все пользователи" и "От имени владельца").');
                 cart = [];
                 updateCartDisplay();
                 document.getElementById('checkout-form').reset();
@@ -1324,7 +1328,7 @@
             })
             .catch(error => {
                 console.error('Error sending order:', error);
-                alert('Ошибка при отправке заказа. Пожалуйста, свяжитесь с нами напрямую.');
+                alert('Ошибка при отправке заказа: ' + error.message + '. Проверьте консоль браузера для деталей.');
             });
         }
 

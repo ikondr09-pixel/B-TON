@@ -5,28 +5,53 @@
 // 3. Удалите весь существующий код и вставьте этот скрипт
 // 4. Нажмите "Развернуть" -> "Новое развертывание"
 // 5. Выберите тип "Веб-приложение"
-// 6. В поле "У кого есть доступ" выберите "Все пользователи" (Anyone)
-// 7. Нажмите "Развернуть" и скопируйте URL веб-приложения
-// 8. Вставьте этот URL в index.html вместо 'YOUR_GOOGLE_APPS_SCRIPT_URL'
+// 6. В поле "Выполнять как" выберите "От имени владельца" (Me)
+// 7. В поле "Кто имеет доступ" выберите "Все пользователи" (Anyone) - НЕ "Все пользователи с аккаунтом Google"
+// 8. Нажмите "Развернуть" и скопируйте URL веб-приложения
+// 9. Вставьте этот URL в index.html вместо 'YOUR_GOOGLE_APPS_SCRIPT_URL'
+// 
+// ВАЖНО: Если вы уже создавали развертывание, нужно создать НОВОЕ (Manage deployments -> Edit -> New deployment)
+// или удалить старое и создать заново. Просто изменить настройки существующего недостаточно!
 
 const SHEET_ID = '1ZNSjyMbDX6uhpPreP6522YEaKCQKpGm1j70_uP8d5w';
 const EMAIL_TO = 'bton.main@yandex.ru';
 
 function doPost(e) {
   try {
-    // Парсим данные из запроса (поддержка как JSON, так и form-urlencoded)
+    Logger.log('Received POST request');
+    Logger.log('Request data: ' + JSON.stringify(e));
+    
+    // Парсим данные из запроса
     let data;
-    if (e.postData && e.postData.contents) {
+    if (e && e.postData && e.postData.contents) {
       const contentType = e.postData.type || '';
+      Logger.log('Content-Type: ' + contentType);
+      
       if (contentType.indexOf('application/json') !== -1) {
         data = JSON.parse(e.postData.contents);
+        Logger.log('Parsed JSON data');
+      } else if (contentType.indexOf('application/x-www-form-urlencoded') !== -1) {
+        // Для form-urlencoded данные уже распарсены в e.parameter
+        data = e.parameter;
+        Logger.log('Parsed form-urlencoded data');
       } else {
-        // Обработка form-urlencoded данных
-        data = JSON.parse(JSON.stringify(e.parameter));
+        // Пытаемся распарсить как JSON, если не получится - используем parameter
+        try {
+          data = JSON.parse(e.postData.contents);
+          Logger.log('Parsed as JSON (fallback)');
+        } catch (jsonError) {
+          data = e.parameter;
+          Logger.log('Using parameter data (fallback)');
+        }
       }
-    } else {
+    } else if (e && e.parameter) {
       data = e.parameter;
+      Logger.log('Using parameter data');
+    } else {
+      throw new Error('No data received in request');
     }
+    
+    Logger.log('Final parsed data: ' + JSON.stringify(data));
     
     // Получаем текущую дату и время
     const now = new Date();
@@ -54,6 +79,8 @@ function doPost(e) {
       data.order || ''
     ]);
     
+    Logger.log('Order saved to sheet successfully');
+    
     // Формируем текст письма для уведомления
     const subject = '🛒 Новый заказ B\'TON - ' + (data.date || dateStr);
     const htmlBody = `
@@ -68,11 +95,17 @@ function doPost(e) {
     `;
     
     // Отправляем email уведомление
-    MailApp.sendEmail({
-      to: EMAIL_TO,
-      subject: subject,
-      htmlBody: htmlBody
-    });
+    try {
+      MailApp.sendEmail({
+        to: EMAIL_TO,
+        subject: subject,
+        htmlBody: htmlBody
+      });
+      Logger.log('Email notification sent successfully');
+    } catch (emailError) {
+      Logger.log('Error sending email: ' + emailError.toString());
+      // Не прерываем выполнение, если email не отправился
+    }
     
     // Возвращаем успешный ответ
     return ContentService
@@ -81,16 +114,17 @@ function doPost(e) {
       
   } catch (error) {
     // Логируем ошибку и возвращаем её
-    Logger.log('Error processing order: ' + error.toString());
+    Logger.log('CRITICAL ERROR processing order: ' + error.toString());
+    Logger.log('Stack trace: ' + error.stack);
     
     return ContentService
-      .createTextOutput(JSON.stringify({ result: 'error', message: error.toString() }))
+      .createTextOutput(JSON.stringify({ result: 'error', message: error.toString(), stack: error.stack }))
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
 
 function doGet(e) {
   return ContentService
-    .createTextOutput(JSON.stringify({ message: 'B\'TON Order Processing API is running' }))
+    .createTextOutput(JSON.stringify({ message: 'B\'TON Order Processing API is running', status: 'ok' }))
     .setMimeType(ContentService.MimeType.JSON);
 }

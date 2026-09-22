@@ -1284,7 +1284,7 @@
             // 4. Нажмите "Развернуть" -> "Новое развертывание"
             // 5. Тип: "Веб-приложение", Доступ: "Все пользователи"
             // 6. Скопируйте URL веб-приложения и замените scriptUrl ниже
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbyh_xZEXrTYyNTf3GwhwwMrR3Yxs5pRxt2AuoeZ6wddDOI0couwTx0XLlZPJfseVn5QLQ/exec';
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbzFLldcXDcViTf6b2kVdMwoyYbtViP75pcusIA_6N6RsXBgfx2nJ2oMn2u9JxlqwXI8Dg/exec';
 
             // Prepare data for Google Sheets
             const formData = {
@@ -1310,9 +1310,9 @@
                 method: 'POST',
                 mode: 'no-cors',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/json'
                 },
-                body: formBody.toString()
+                body: JSON.stringify(formData)
             })
             .then(() => {
                 console.log('Order sent successfully (no-cors mode)');

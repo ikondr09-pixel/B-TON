@@ -14,8 +14,19 @@ const EMAIL_TO = 'bton.main@yandex.ru';
 
 function doPost(e) {
   try {
-    // Парсим данные из запроса
-    const data = JSON.parse(e.postData.contents);
+    // Парсим данные из запроса (поддержка как JSON, так и form-urlencoded)
+    let data;
+    if (e.postData && e.postData.contents) {
+      const contentType = e.postData.type || '';
+      if (contentType.indexOf('application/json') !== -1) {
+        data = JSON.parse(e.postData.contents);
+      } else {
+        // Обработка form-urlencoded данных
+        data = JSON.parse(JSON.stringify(e.parameter));
+      }
+    } else {
+      data = e.parameter;
+    }
     
     // Получаем текущую дату и время
     const now = new Date();
@@ -36,7 +47,7 @@ function doPost(e) {
     
     // Добавляем новую строку с данными заказа
     sheet.appendRow([
-      dateStr,
+      data.date || dateStr,
       data.name || '',
       data.contact || '',
       data.comment || '',
@@ -44,10 +55,10 @@ function doPost(e) {
     ]);
     
     // Формируем текст письма для уведомления
-    const subject = '🛒 Новый заказ B\'TON - ' + dateStr;
+    const subject = '🛒 Новый заказ B\'TON - ' + (data.date || dateStr);
     const htmlBody = `
       <h2>Новый заказ B'TON</h2>
-      <p><strong>Дата:</strong> ${dateStr}</p>
+      <p><strong>Дата:</strong> ${data.date || dateStr}</p>
       <p><strong>Имя:</strong> ${data.name || ''}</p>
       <p><strong>Контактные данные:</strong> ${data.contact || ''}</p>
       <p><strong>Комментарии:</strong> ${data.comment || ''}</p>

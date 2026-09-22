@@ -89,7 +89,7 @@
         }
         
         .logo img {
-            height: 80px;
+            height: 100px;
             width: auto;
             object-fit: contain;
         }
@@ -535,7 +535,7 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
 
@@ -681,6 +681,13 @@
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
+        /* Логотип B'TON в шапке и разделе "О бренде" должен быть одинаковым */
+        .logo img,
+        .brand-item:first-child img {
+            width: 100px;
+            height: 100px;
+        }
+
         .brand-item span {
             font-size: 1.1rem;
             font-weight: 500;
@@ -713,7 +720,7 @@
 
         @media (max-width: 576px) {
             .features {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -854,11 +861,22 @@
             }
 
             .header-socials {
-                display: none;
+                display: flex;
+                gap: 10px;
+            }
+
+            .social-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
             }
 
             .products-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .product-card {
+                min-width: 0;
             }
 
             .features {
@@ -982,7 +1000,7 @@
               <img src="https://github.com/user-attachments/assets/5143c893-fd83-43c4-9d74-08448e8af47e" alt="Бренд B'TON">
               <span><strong>Бренд B'TON</strong> — собственное производство изделий из бетона для дома и души.</span>
             </div>
-            <p>Только натуральное экологичное сырье премиального качества.</p>
+            <p><strong>Только натуральное экологичное сырье премиального качества.</strong></p>
             <div class="brand-item">
               <img src="https://github.com/user-attachments/assets/68e9a109-610e-4130-92ec-abb1ae9a4100" alt="Бетон">
               <span><strong>Бетон</strong> — долговечный материал, стойкий ко всем условиям. Обработан для дополнительной стойкости к влаге, чтобы вы могли использовать наши изделия для высаживания растений. Дарите изделию вторую жизнь.</span>
@@ -1222,7 +1240,7 @@
             // 2. Получите токен бота (формат: 1234567890:ABCdefGHIjklMNOpqrsTUVwxyz)
             // 3. Узнайте свой chat ID через @userinfobot
             // 4. Замените значения ниже на ваши реальные данные
-            const botToken = 'ВАШ_ТОКЕН_БОТА'; // Замените на токен из @BotFather
+            const botToken = '8242892761:AAGREVlj4kajoCzqtOluDb9GdstmxqMPAo4'; // Токен из @BotFather
             const chatId = '824289261'; // Ваш chat ID из @userinfobot
 
             // Send to Telegram

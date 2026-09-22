@@ -1284,6 +1284,7 @@
             // 4. Нажмите "Развернуть" -> "Новое развертывание"
             // 5. Тип: "Веб-приложение", Доступ: "Все пользователи"
             // 6. Скопируйте URL веб-приложения и замените scriptUrl ниже
+            // ВАЖНО: После любых изменений в скрипте нужно создавать НОВОЕ развертывание!
             const scriptUrl = 'https://script.google.com/macros/s/AKfycbxBYhpjE9x6rJanDbTPmJn1dkYAPRDbb6l4lejFhvQyvewnawj1nxeljvnDe9-azlDRag/exec';
 
             // Prepare data for Google Sheets
@@ -1306,6 +1307,8 @@
             formBody.append('order', orderItems + ' | Итого: ' + total + ' ₽');
             formBody.append('date', new Date().toLocaleString('ru-RU'));
 
+            // Используем mode: 'no-cors' для обхода CORS, но без проверки ответа
+            // Google Apps Script делает редирект, который no-cors не может отследить
             fetch(scriptUrl, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -1315,12 +1318,15 @@
                 body: JSON.stringify(formData)
             })
             .then(response => {
-                // В режиме no-cors мы не можем проверить статус, но запрос отправлен
-                console.log('Request sent. Note: In no-cors mode, we cannot verify the response.');
-                console.log('If you see this but orders are not saved, check GAS deployment settings:');
-                console.log('1. Execute as: Me (owner)');
-                console.log('2. Who has access: Anyone (not "Anyone with Google account")');
-                alert('Заказ отправлен! Если он не появился в таблице, проверьте настройки развертывания скрипта (должно быть "Все пользователи" и "От имени владельца").');
+                // В режиме no-cors мы не можем проверить статус или прочитать ответ
+                // Но если запрос ушел без ошибки сети - считаем успешным
+                console.log('Request sent (no-cors mode).');
+                console.log('If orders are not saved, verify:');
+                console.log('1. Script URL is correct and from latest deployment');
+                console.log('2. Execute as: Me (owner)');
+                console.log('3. Who has access: Anyone (NOT "Anyone with Google account")');
+                console.log('4. Check Execution logs in Apps Script for errors');
+                alert('Заказ отправлен! Если он не появился в таблице через 1-2 минуты, проверьте настройки развертывания скрипта и журнал выполнения в Apps Script.');
                 cart = [];
                 updateCartDisplay();
                 document.getElementById('checkout-form').reset();
@@ -1328,7 +1334,7 @@
             })
             .catch(error => {
                 console.error('Error sending order:', error);
-                alert('Ошибка при отправке заказа: ' + error.message + '. Проверьте консоль браузера для деталей.');
+                alert('Ошибка при отправке заказа: ' + error.message + '. Проверьте консоль браузера для деталей и журнал выполнения в Apps Script.');
             });
         }
 

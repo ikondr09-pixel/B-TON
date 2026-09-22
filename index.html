@@ -1269,133 +1269,58 @@
             const contact = document.getElementById('contact').value;
             const comment = document.getElementById('comment').value;
 
-            // Format order details for Telegram
-            let orderDetails = '🛒 *Новый заказ B\'TON*\\n\\n';
-            orderDetails += '👤 *Имя:* ' + name + '\\n';
-            orderDetails += '📞 *Контакт:* ' + contact + '\\n\\n';
-            orderDetails += '*Товары:*\\n';
+            // Format order details
+            let orderItems = '';
             cart.forEach(item => {
-                orderDetails += '• ' + item.name + ' (арт. ' + item.art + ') - ' + item.quantity + ' шт. × ' + item.price + ' ₽\\n';
+                orderItems += item.name + ' (арт. ' + item.art + ') - ' + item.quantity + ' шт. × ' + item.price + ' ₽; ';
             });
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            orderDetails += '\\n💰 *Итого:* ' + total + ' ₽';
-            if (comment) {
-                orderDetails += '\\n\\n📝 *Комментарий:* ' + comment;
-            }
 
-            // Telegram bot token and chat ID
-            // ВАЖНО: Для работы заказа необходимо настроить Telegram бота:
-            // 1. Создайте бота через @BotFather в Telegram
-            // 2. Получите токен бота (формат: 1234567890:ABCdefGHIjklMNOpqrsTUVwxyz)
-            // 3. Узнайте свой chat ID через @userinfobot И НАПИШИТЕ БОТУ ЛЮБОЕ СООБЩЕНИЕ
-            // 4. Замените значения ниже на ваши реальные данные
-            const botToken = '8242892761:AAGREVlj4kajoCzqtOluDb9GdstmxqMPAo4'; // Токен из @BotFather
-            const chatId = '8242892761'; // Ваш chat ID из @userinfobot
+            // Google Apps Script Web App URL
+            // Инструкция по настройке:
+            // 1. Откройте Google Таблицу: https://docs.google.com/spreadsheets/d/1ZNSjyMbDX6uhpPreP6522YEaKCQKpGm1j70_uP8d5w/edit
+            // 2. Расширения -> Apps Script
+            // 3. Вставьте код из файла google_apps_script.js
+            // 4. Нажмите "Развернуть" -> "Новое развертывание"
+            // 5. Тип: "Веб-приложение", Доступ: "Все пользователи"
+            // 6. Скопируйте URL веб-приложения и замените scriptUrl ниже
+            const scriptUrl = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
 
-            // Format message for Telegram
-            const telegramUrl = 'https://api.telegram.org/bot' + botToken + '/sendMessage';
-            const messageData = {
-                chat_id: chatId,
-                text: orderDetails,
-                parse_mode: 'Markdown'
+            // Prepare data for Google Sheets
+            const formData = {
+                date: new Date().toLocaleString('ru-RU'),
+                name: name,
+                contact: contact,
+                comment: comment,
+                order: orderItems + ' | Итого: ' + total + ' ₽'
             };
 
-            console.log('Sending order to Telegram...');
-            console.log('Bot token:', botToken.substring(0, 20) + '...');
-            console.log('Chat ID:', chatId);
-            console.log('Order details:', orderDetails);
+            console.log('Sending order to Google Sheets...');
+            console.log('Order data:', formData);
 
-            // Try multiple CORS proxies in sequence
-            const proxies = [
-                'https://api.allorigins.win/raw?url=',
-                'https://corsproxy.io/?',
-                'https://thingproxy.freeboard.io/fetch/'
-            ];
-
-            let proxyIndex = 0;
-
-            function tryNextProxy() {
-                if (proxyIndex >= proxies.length) {
-                    // All proxies failed, try direct with no-cors as last resort
-                    sendDirectNoCors();
-                    return;
-                }
-
-                const proxiedUrl = proxies[proxyIndex] + encodeURIComponent(telegramUrl);
-                console.log('Trying proxy ' + (proxyIndex + 1) + ': ' + proxies[proxyIndex]);
-                
-                fetch(proxiedUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: JSON.stringify(messageData)
-                })
-                .then(response => {
-                    console.log('Proxy response status:', response.status);
-                    if (!response.ok) {
-                        throw new Error('HTTP error! status: ' + response.status);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Telegram response:', data);
-                    if (data && data.ok) {
-                        alert('Спасибо за заказ! Мы свяжемся с вами в ближайшее время.');
-                        cart = [];
-                        updateCartDisplay();
-                        document.getElementById('checkout-form').reset();
-                        toggleCart();
-                    } else {
-                        const errorMsg = data && data.description ? data.description : 'Неизвестная ошибка';
-                        console.error('Telegram error:', errorMsg);
-                        
-                        // Check for specific errors
-                        if (errorMsg.includes('chat not found') || errorMsg.includes('bot was blocked')) {
-                            alert('Ошибка: Бот не может отправить сообщение. Пожалуйста:\\n1. Найдите бота @Btonorderbot в Telegram\\n2. Нажмите Start/Запустить\\n3. Попробуйте оформить заказ снова');
-                        } else {
-                            alert('Ошибка при отправке заказа: ' + errorMsg + '. Пожалуйста, напишите нам в Telegram или позвоните.');
-                        }
-                    }
-                })
-                .catch(error => {
-                    console.error('Proxy ' + proxyIndex + ' failed:', error);
-                    proxyIndex++;
-                    tryNextProxy();
-                });
-            }
-
-            function sendDirectNoCors() {
-                console.log('All proxies failed, trying direct no-cors...');
-                fetch(telegramUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(messageData),
-                    mode: 'no-cors'
-                })
-                .then(() => {
-                    // In no-cors mode we can't verify success, but request was sent
-                    console.log('Direct no-cors request sent (cannot verify response)');
-                    alert('Заказ отправлен! Мы свяжемся с вами в ближайшее время.');
-                    cart = [];
-                    updateCartDisplay();
-                    document.getElementById('checkout-form').reset();
-                    toggleCart();
-                })
-                .catch(fallbackError => {
-                    console.error('Direct connection also failed:', fallbackError);
-                    alert('Ошибка при отправке заказа. Пожалуйста, напишите нам напрямую в Telegram @Btonorderbot или позвоните.');
-                });
-            }
-
-            // Start with first proxy
-            tryNextProxy();
+            // Send to Google Apps Script
+            fetch(scriptUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(() => {
+                console.log('Order sent successfully (no-cors mode)');
+                alert('Спасибо за заказ! Мы свяжемся с вами в ближайшее время.');
+                cart = [];
+                updateCartDisplay();
+                document.getElementById('checkout-form').reset();
+                toggleCart();
+            })
+            .catch(error => {
+                console.error('Error sending order:', error);
+                alert('Ошибка при отправке заказа. Пожалуйста, свяжитесь с нами напрямую.');
+            });
         }
 
-        // Mobile menu toggle
         function toggleMenu() {
             const nav = document.getElementById('nav-menu');
             nav.classList.toggle('active');

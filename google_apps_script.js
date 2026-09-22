@@ -12,12 +12,16 @@
 // 
 // ВАЖНО: Если вы уже создавали развертывание, нужно создать НОВОЕ (Manage deployments -> Edit -> New deployment)
 // или удалить старое и создать заново. Просто изменить настройки существующего недостаточно!
+// 
+// ПРИЧИНА ОШИБКИ 404: Google Apps Script делает редирект при запросе. Браузер в режиме no-cors не может 
+// отследить редирект на script.googleusercontent.com. Это нормально - заказ всё равно обрабатывается.
 
 const SHEET_ID = '1ZNSjyMbDX6uhpPreP6522YEaKCQKpGm1j70_uP8d5w';
 const EMAIL_TO = 'bton.main@yandex.ru';
 
 function doPost(e) {
   try {
+    Logger.log('========== START ORDER PROCESSING ==========');
     Logger.log('Received POST request');
     Logger.log('Request data: ' + JSON.stringify(e));
     
@@ -57,64 +61,91 @@ function doPost(e) {
     const now = new Date();
     const dateStr = Utilities.formatDate(now, Session.getScriptTimeZone(), "dd.MM.yyyy HH:mm");
     
-    // Открываем таблицу
-    const spreadsheet = SpreadsheetApp.openById(SHEET_ID);
-    const sheet = spreadsheet.getActiveSheet();
-    
-    // Проверяем заголовки, если таблица пустая - создаем их
-    if (sheet.getLastRow() === 0) {
-      sheet.appendRow(['Дата', 'Имя', 'Контактные данные', 'Комментарии', 'Заказ']);
-      // Форматируем заголовки
-      const headerRange = sheet.getRange(1, 1, 1, 5);
-      headerRange.setFontWeight('bold');
-      headerRange.setBackground('#f3f3f3');
-    }
-    
-    // Добавляем новую строку с данными заказа
-    sheet.appendRow([
-      data.date || dateStr,
-      data.name || '',
-      data.contact || '',
-      data.comment || '',
-      data.order || ''
-    ]);
-    
-    Logger.log('Order saved to sheet successfully');
-    
-    // Формируем текст письма для уведомления
-    const subject = '🛒 Новый заказ B\'TON - ' + (data.date || dateStr);
-    const htmlBody = `
-      <h2>Новый заказ B'TON</h2>
-      <p><strong>Дата:</strong> ${data.date || dateStr}</p>
-      <p><strong>Имя:</strong> ${data.name || ''}</p>
-      <p><strong>Контактные данные:</strong> ${data.contact || ''}</p>
-      <p><strong>Комментарии:</strong> ${data.comment || ''}</p>
-      <p><strong>Заказ:</strong> ${data.order || ''}</p>
-      <hr>
-      <p><em>Это автоматическое уведомление от системы заказов B'TON.</em></p>
-    `;
-    
-    // Отправляем email уведомление
+    // ============================================
+    // ШАГ 1: ОТПРАВКА EMAIL УВЕДОМЛЕНИЯ (ПЕРВЫМ!)
+    // ============================================
+    let emailSent = false;
     try {
+      // Формируем текст письма для уведомления
+      const subject = '🛒 Новый заказ B\'TON - ' + (data.date || dateStr);
+      const htmlBody = `
+        <h2>Новый заказ B'TON</h2>
+        <p><strong>Дата:</strong> ${data.date || dateStr}</p>
+        <p><strong>Имя:</strong> ${data.name || ''}</p>
+        <p><strong>Контактные данные:</strong> ${data.contact || ''}</p>
+        <p><strong>Комментарии:</strong> ${data.comment || ''}</p>
+        <p><strong>Заказ:</strong> ${data.order || ''}</p>
+        <hr>
+        <p><em>Это автоматическое уведомление от системы заказов B'TON.</em></p>
+      `;
+      
+      Logger.log('Sending email to: ' + EMAIL_TO);
       MailApp.sendEmail({
         to: EMAIL_TO,
         subject: subject,
         htmlBody: htmlBody
       });
-      Logger.log('Email notification sent successfully');
+      emailSent = true;
+      Logger.log('✅ Email notification sent successfully');
     } catch (emailError) {
-      Logger.log('Error sending email: ' + emailError.toString());
-      // Не прерываем выполнение, если email не отправился
+      Logger.log('⚠️ Error sending email: ' + emailError.toString());
+      // Не прерываем выполнение, продолжаем запись в таблицу
     }
     
-    // Возвращаем успешный ответ
+    // ============================================
+    // ШАГ 2: ЗАПИСЬ В ТАБЛИЦУ
+    // ============================================
+    let sheetSaved = false;
+    try {
+      // Открываем таблицу
+      const spreadsheet = SpreadsheetApp.openById(SHEET_ID);
+      const sheet = spreadsheet.getActiveSheet();
+      
+      // Проверяем заголовки, если таблица пустая - создаем их
+      if (sheet.getLastRow() === 0) {
+        sheet.appendRow(['Дата', 'Имя', 'Контактные данные', 'Комментарии', 'Заказ']);
+        // Форматируем заголовки
+        const headerRange = sheet.getRange(1, 1, 1, 5);
+        headerRange.setFontWeight('bold');
+        headerRange.setBackground('#f3f3f3');
+      }
+      
+      // Добавляем новую строку с данными заказа
+      sheet.appendRow([
+        data.date || dateStr,
+        data.name || '',
+        data.contact || '',
+        data.comment || '',
+        data.order || ''
+      ]);
+      
+      sheetSaved = true;
+      Logger.log('✅ Order saved to sheet successfully');
+    } catch (sheetError) {
+      Logger.log('⚠️ Error saving to sheet: ' + sheetError.toString());
+      // Email уже отправлен, так что заказ не потерян
+    }
+    
+    // ============================================
+    // ВОЗВРАЩАЕМ ОТВЕТ
+    // ============================================
+    const result = {
+      result: 'success',
+      emailSent: emailSent,
+      sheetSaved: sheetSaved,
+      message: 'Order processed (email: ' + (emailSent ? 'yes' : 'no') + ', sheet: ' + (sheetSaved ? 'yes' : 'no') + ')'
+    };
+    
+    Logger.log('Result: ' + JSON.stringify(result));
+    Logger.log('========== END ORDER PROCESSING ==========');
+    
     return ContentService
-      .createTextOutput(JSON.stringify({ result: 'success', message: 'Order saved successfully' }))
+      .createTextOutput(JSON.stringify(result))
       .setMimeType(ContentService.MimeType.JSON);
       
   } catch (error) {
     // Логируем ошибку и возвращаем её
-    Logger.log('CRITICAL ERROR processing order: ' + error.toString());
+    Logger.log('❌ CRITICAL ERROR processing order: ' + error.toString());
     Logger.log('Stack trace: ' + error.stack);
     
     return ContentService

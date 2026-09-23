@@ -1344,6 +1344,19 @@
             }
         }
 
+        // Защита от дублирования id в разметке: если в HTML случайно появятся два элемента
+        // с одинаковым id ('name' или 'contact'), getElementById начнёт возвращать не тот элемент,
+        // и форма заказа «перестанет работать». Ниже — выбор видимого элемента из группы.
+        function getUniqueField(id) {
+            const els = document.querySelectorAll('[id="' + id + '"]');
+            if (els.length <= 1) return els[0] || null;
+            console.warn('Найдено несколько элементов с id="' + id + '" — используется первый видимый.');
+            for (const el of els) {
+                if (el.offsetParent !== null || el.getClientRects().length > 0) return el;
+            }
+            return els[0];
+        }
+
         function submitOrder(event) {
             event.preventDefault();
             
@@ -1352,9 +1365,16 @@
                 return;
             }
 
-            const name = document.getElementById('name').value;
-            const contact = document.getElementById('contact').value;
-            const comment = document.getElementById('comment').value;
+            const nameEl = getUniqueField('name');
+            const contactEl = getUniqueField('contact');
+            const commentEl = getUniqueField('comment');
+            if (!nameEl || !contactEl) {
+                alert('Ошибка формы: найдите разработчика — на странице дублируются поля ввода.');
+                return;
+            }
+            const name = nameEl.value.trim();
+            const contact = contactEl.value.trim();
+            const comment = commentEl ? commentEl.value : '';
 
             // Format order details
             let orderItems = '';
@@ -1424,7 +1444,7 @@
             })
             .catch(error => {
                 console.error('Error sending order:', error);
-                alert('Ошибка при отправке заказа: ' + error.message + ');
+                alert('Ошибка при отправке заказа: ' + error.message);
             });
         }
 

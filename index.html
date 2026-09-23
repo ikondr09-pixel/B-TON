@@ -221,6 +221,74 @@
             visibility: visible;
         }
 
+        /* ===== SUCCESS MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-content h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--gray-dark);
+        }
+
+        .modal-content p {
+            font-size: 1.1rem;
+            color: var(--gray-medium);
+            margin-bottom: 25px;
+        }
+
+        .modal-close-btn {
+            padding: 12px 30px;
+            background: var(--orange-gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(229, 101, 21, 0.4);
+        }
+
         .cart-header {
             display: flex;
             justify-content: space-between;
@@ -1148,6 +1216,14 @@
         </form>
       </div>
     </div>
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="success-modal" onclick="closeModal(event)">
+      <div class="modal-content">
+        <h2>Спасибо за заказ!</h2>
+        <p>Мы свяжемся с Вами в ближайшее время!</p>
+        <button class="modal-close-btn" onclick="closeModalDirect()">OK</button>
+      </div>
+    </div>
     <script>
         // Cart functionality
         let cart = [];
@@ -1157,6 +1233,17 @@
             const overlay = document.getElementById('cart-overlay');
             sidebar.classList.toggle('active');
             overlay.classList.toggle('active');
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('active');
+        }
+
+        function closeModalDirect() {
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('active');
         }
 
         function addToCart(button) {
@@ -1284,7 +1371,8 @@
             // 4. Нажмите "Развернуть" -> "Новое развертывание"
             // 5. Тип: "Веб-приложение", Доступ: "Все пользователи"
             // 6. Скопируйте URL веб-приложения и замените scriptUrl ниже
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbxDN8WvrXVNGcJc09ZAiZIa9PTbZZ9BN0mrNRnlltMbXU22nTRa0KC88cCdtBNXo1Xnzg/exec';
+            // ВАЖНО: После любых изменений в скрипте нужно создавать НОВОЕ развертывание!
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbxBYhpjE9x6rJanDbTPmJn1dkYAPRDbb6l4lejFhvQyvewnawj1nxeljvnDe9-azlDRag/exec';
 
             // Prepare data for Google Sheets
             const formData = {
@@ -1306,6 +1394,8 @@
             formBody.append('order', orderItems + ' | Итого: ' + total + ' ₽');
             formBody.append('date', new Date().toLocaleString('ru-RU'));
 
+            // Используем mode: 'no-cors' для обхода CORS, но без проверки ответа
+            // Google Apps Script делает редирект, который no-cors не может отследить
             fetch(scriptUrl, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -1315,20 +1405,28 @@
                 body: formBody.toString()
             })
             .then(response => {
-                // В режиме no-cors мы не можем проверить статус, но запрос отправлен
-                console.log('Request sent. Note: In no-cors mode, we cannot verify the response.');
-                console.log('If you see this but orders are not saved, check GAS deployment settings:');
-                console.log('1. Execute as: Me (owner)');
-                console.log('2. Who has access: Anyone (not "Anyone with Google account")');
-                alert('Заказ отправлен! Если он не появился в таблице, проверьте настройки развертывания скрипта (должно быть "Все пользователи" и "От имени владельца").');
+                // В режиме no-cors мы не можем проверить статус или прочитать ответ
+                // Но если запрос ушел без ошибки сети - считаем успешным
+                console.log('Request sent (no-cors mode).');
+                console.log('If orders are not saved, verify:');
+                console.log('1. Script URL is correct and from latest deployment');
+                console.log('2. Execute as: Me (owner)');
+                console.log('3. Who has access: Anyone (NOT "Anyone with Google account")');
+                console.log('4. Check Execution logs in Apps Script for errors');
+                
+                // Очищаем корзину и форму
                 cart = [];
                 updateCartDisplay();
                 document.getElementById('checkout-form').reset();
                 toggleCart();
+                
+                // Показываем модальное окно вместо alert
+                const modal = document.getElementById('success-modal');
+                modal.classList.add('active');
             })
             .catch(error => {
                 console.error('Error sending order:', error);
-                alert('Ошибка при отправке заказа: ' + error.message + '. Проверьте консоль браузера для деталей.');
+                alert('Ошибка при отправке заказа: ' + error.message + '. Проверьте консоль браузера для деталей и журнал выполнения в Apps Script.');
             });
         }
 

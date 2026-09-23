@@ -1372,7 +1372,7 @@
             // 5. Тип: "Веб-приложение", Доступ: "Все пользователи"
             // 6. Скопируйте URL веб-приложения и замените scriptUrl ниже
             // ВАЖНО: После любых изменений в скрипте нужно создавать НОВОЕ развертывание!
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbxBYhpjE9x6rJanDbTPmJn1dkYAPRDbb6l4lejFhvQyvewnawj1nxeljvnDe9-azlDRag/exec';
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbx6Xb7CeOpxsHYHSj__uP7y_mnAVN-CsptOOzft7AOdWt9WSMxMl3KTvoj_9CPgtlNWrA/exec';
 
             // Prepare data for Google Sheets
             const formData = {
@@ -1400,9 +1400,9 @@
                 method: 'POST',
                 mode: 'no-cors',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/json'
                 },
-                body: formBody.toString()
+                body: JSON.stringify(formData)
             })
             .then(response => {
                 // В режиме no-cors мы не можем проверить статус или прочитать ответ
@@ -1413,8 +1413,7 @@
                 console.log('2. Execute as: Me (owner)');
                 console.log('3. Who has access: Anyone (NOT "Anyone with Google account")');
                 console.log('4. Check Execution logs in Apps Script for errors');
-                
-                // Очищаем корзину и форму
+                alert('Заказ отправлен! Если он не появился в таблице через 1-2 минуты, проверьте настройки развертывания скрипта и журнал выполнения в Apps Script.');
                 cart = [];
                 updateCartDisplay();
                 document.getElementById('checkout-form').reset();

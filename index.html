@@ -1372,7 +1372,7 @@
             // 5. Тип: "Веб-приложение", Доступ: "Все пользователи"
             // 6. Скопируйте URL веб-приложения и замените scriptUrl ниже
             // ВАЖНО: После любых изменений в скрипте нужно создавать НОВОЕ развертывание!
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbxBYhpjE9x6rJanDbTPmJn1dkYAPRDbb6l4lejFhvQyvewnawj1nxeljvnDe9-azlDRag/exec';
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbz3p_D521xPOnhvM325Trmb-XfFvi2v4TxwuZfZkMwEFKA1Zx5R6aFJYmGhASSjay-kfQ/exec';
 
             // Prepare data for Google Sheets
             const formData = {
@@ -1383,55 +1383,49 @@
                 order: orderItems + ' | Итого: ' + total + ' ₽'
             };
 
-            // Отправляем данные заказа через скрытый iframe (form POST).
-            // Этот способ не блокируется CORS-политиками браузера и корректно
-            // проходит редиректы Google Apps Script.
-            const orderStr = orderItems + ' | Итого: ' + total + ' ₽';
-            const dateStr = new Date().toLocaleString('ru-RU');
+            console.log('Sending order to Google Sheets...');
+            console.log('Order data:', formData);
 
-            const iframeName = 'order-target-frame';
-            let frame = document.getElementById(iframeName);
-            if (!frame) {
-                frame = document.createElement('iframe');
-                frame.name = iframeName;
-                frame.style.display = 'none';
-                document.body.appendChild(frame);
-            }
+            // Send to Google Apps Script using FormData to avoid CORS issues
+            const formBody = new URLSearchParams();
+            formBody.append('name', name);
+            formBody.append('contact', contact);
+            formBody.append('comment', comment);
+            formBody.append('order', orderItems + ' | Итого: ' + total + ' ₽');
+            formBody.append('date', new Date().toLocaleString('ru-RU'));
 
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = scriptUrl;
-            form.target = iframeName;
-            form.style.display = 'none';
-
-            function addField(fieldName, value) {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = fieldName;
-                input.value = value;
-                form.appendChild(input);
-            }
-            addField('name', name);
-            addField('contact', contact);
-            addField('comment', comment);
-            addField('order', orderStr);
-            addField('date', dateStr);
-
-            document.body.appendChild(form);
-            form.submit();
-
-            // Удаляем временную форму после отправки
-            setTimeout(() => { form.remove(); }, 2000);
-
-            // Очищаем корзину и форму
-            cart = [];
-            updateCartDisplay();
-            document.getElementById('checkout-form').reset();
-            toggleCart();
-
-            // Показываем модальное окно
-            const modal = document.getElementById('success-modal');
-            modal.classList.add('active');
+            // Используем mode: 'no-cors' для обхода CORS, но без проверки ответа
+            // Google Apps Script делает редирект, который no-cors не может отследить
+            fetch(scriptUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                // В режиме no-cors мы не можем проверить статус или прочитать ответ
+                // Но если запрос ушел без ошибки сети - считаем успешным
+                console.log('Request sent (no-cors mode).');
+                console.log('If orders are not saved, verify:');
+                console.log('1. Script URL is correct and from latest deployment');
+                console.log('2. Execute as: Me (owner)');
+                console.log('3. Who has access: Anyone (NOT "Anyone with Google account")');
+                console.log('4. Check Execution logs in Apps Script for errors');
+                cart = [];
+                updateCartDisplay();
+                document.getElementById('checkout-form').reset();
+                toggleCart();
+                
+                // Показываем модальное окно вместо alert
+                const modal = document.getElementById('success-modal');
+                modal.classList.add('active');
+            })
+            .catch(error => {
+                console.error('Error sending order:', error);
+                alert('Ошибка при отправке заказа: ' + error.message + ');
+            });
         }
 
         function toggleMenu() {

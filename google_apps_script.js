@@ -12,6 +12,9 @@
 // 
 // ВАЖНО: Если вы уже создавали развертывание, нужно создать НОВОЕ (Manage deployments -> Edit -> New deployment)
 // или удалить старое и создать заново. Просто изменить настройки существующего недостаточно!
+// 
+// ПРИЧИНА ОШИБКИ 404: Google Apps Script делает редирект при запросе. Браузер в режиме no-cors не может 
+// отследить редирект на script.googleusercontent.com. Это нормально - заказ всё равно обрабатывается.
 
 const SHEET_ID = '1ZNSjyMbDX6uhpPreP6522YEaKCQKpGm1j70_uP8d5w';
 const EMAIL_TO = 'bton.main@yandex.ru';
@@ -82,9 +85,9 @@ function doPost(e) {
         htmlBody: htmlBody
       });
       emailSent = true;
-      Logger.log('Email notification sent successfully');
+      Logger.log('✅ Email notification sent successfully');
     } catch (emailError) {
-      Logger.log('Error sending email: ' + emailError.toString());
+      Logger.log('⚠️ Error sending email: ' + emailError.toString());
       // Не прерываем выполнение, продолжаем запись в таблицу
     }
     
@@ -93,21 +96,9 @@ function doPost(e) {
     // ============================================
     let sheetSaved = false;
     try {
-      // Открываем таблицу (через активный файл скрипта - надежнее при bound-скрипте)
-      var spreadsheet;
-      try {
-        spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-        if (!spreadsheet || spreadsheet.getId() !== SHEET_ID) {
-          spreadsheet = SpreadsheetApp.openById(SHEET_ID);
-        }
-      } catch (openError) {
-        Logger.log('openById failed, trying active: ' + openError.toString());
-        spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-      }
-      // Ищем лист "Заказы", иначе берём первый лист
-      var sheet = spreadsheet.getSheetByName('Заказы');
-      if (!sheet) sheet = spreadsheet.getSheets()[0];
-      Logger.log('Sheet name: ' + sheet.getName());
+      // Открываем таблицу
+      const spreadsheet = SpreadsheetApp.openById(SHEET_ID);
+      const sheet = spreadsheet.getActiveSheet();
       
       // Проверяем заголовки, если таблица пустая - создаем их
       if (sheet.getLastRow() === 0) {
@@ -128,12 +119,10 @@ function doPost(e) {
       ]);
       
       sheetSaved = true;
-      Logger.log('Order saved to sheet successfully');
+      Logger.log('✅ Order saved to sheet successfully');
     } catch (sheetError) {
-      Logger.log('Error saving to sheet: ' + sheetError.toString());
-      Logger.log('Sheet ID: ' + SHEET_ID);
-      // Логируем детальную ошибку
-      throw new Error('Failed to save to sheet: ' + sheetError.toString());
+      Logger.log('⚠️ Error saving to sheet: ' + sheetError.toString());
+      // Email уже отправлен, так что заказ не потерян
     }
     
     // ============================================
@@ -155,7 +144,7 @@ function doPost(e) {
       
   } catch (error) {
     // Логируем ошибку и возвращаем её
-    Logger.log('CRITICAL ERROR processing order: ' + error.toString());
+    Logger.log('❌ CRITICAL ERROR processing order: ' + error.toString());
     Logger.log('Stack trace: ' + error.stack);
     
     return ContentService

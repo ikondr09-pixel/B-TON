@@ -1413,7 +1413,6 @@
                 console.log('2. Execute as: Me (owner)');
                 console.log('3. Who has access: Anyone (NOT "Anyone with Google account")');
                 console.log('4. Check Execution logs in Apps Script for errors');
-                alert('Заказ отправлен! Если он не появился в таблице через 1-2 минуты, проверьте настройки развертывания скрипта и журнал выполнения в Apps Script.');
                 cart = [];
                 updateCartDisplay();
                 document.getElementById('checkout-form').reset();
@@ -1425,7 +1424,7 @@
             })
             .catch(error => {
                 console.error('Error sending order:', error);
-                alert('Ошибка при отправке заказа: ' + error.message + '. Проверьте консоль браузера для деталей и журнал выполнения в Apps Script.');
+                alert('Ошибка при отправке заказа: ' + error.message + ');
             });
         }
 

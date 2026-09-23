@@ -23,7 +23,6 @@ function doPost(e) {
   try {
     Logger.log('========== START ORDER PROCESSING ==========');
     Logger.log('Received POST request');
-    Logger.log('Request data: ' + JSON.stringify(e));
     
     // Парсим данные из запроса
     let data;

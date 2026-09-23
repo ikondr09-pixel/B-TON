@@ -221,6 +221,74 @@
             visibility: visible;
         }
 
+        /* ===== SUCCESS MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-content h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--gray-dark);
+        }
+
+        .modal-content p {
+            font-size: 1.1rem;
+            color: var(--gray-medium);
+            margin-bottom: 25px;
+        }
+
+        .modal-close-btn {
+            padding: 12px 30px;
+            background: var(--orange-gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(229, 101, 21, 0.4);
+        }
+
         .cart-header {
             display: flex;
             justify-content: space-between;
@@ -1148,6 +1216,14 @@
         </form>
       </div>
     </div>
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="success-modal" onclick="closeModal(event)">
+      <div class="modal-content">
+        <h2>Спасибо за заказ!</h2>
+        <p>Мы свяжемся с Вами в ближайшее время!</p>
+        <button class="modal-close-btn" onclick="closeModalDirect()">OK</button>
+      </div>
+    </div>
     <script>
         // Cart functionality
         let cart = [];
@@ -1157,6 +1233,17 @@
             const overlay = document.getElementById('cart-overlay');
             sidebar.classList.toggle('active');
             overlay.classList.toggle('active');
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('active');
+        }
+
+        function closeModalDirect() {
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('active');
         }
 
         function addToCart(button) {
@@ -1331,6 +1418,10 @@
                 updateCartDisplay();
                 document.getElementById('checkout-form').reset();
                 toggleCart();
+                
+                // Показываем модальное окно вместо alert
+                const modal = document.getElementById('success-modal');
+                modal.classList.add('active');
             })
             .catch(error => {
                 console.error('Error sending order:', error);

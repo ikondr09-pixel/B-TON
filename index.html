@@ -423,6 +423,19 @@
             margin-top: 20px;
         }
 
+        .consent-note {
+            margin-top: 12px;
+            font-size: 0.75rem;
+            line-height: 1.45;
+            color: var(--gray-medium);
+            text-align: center;
+        }
+
+        .consent-note a {
+            color: var(--orange);
+            text-decoration: underline;
+        }
+
         .cart-form h3 {
             font-size: 1.2rem;
             margin-bottom: 15px;
@@ -503,7 +516,10 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: var(--concrete-gradient);
+            background-color: #2a2a2a;
+            background-image: radial-gradient(at 6.268182905426533% 99.80280541917598%, hsla(0, 0%, 30.19607843137255%, 1) 0%, hsla(0, 0%, 30.19607843137255%, 0) 100%), radial-gradient(at 48.613219162265075% 44.873567760984834%, hsla(23.07692307692308, 83.2%, 49.01960784313726%, 1) 0%, hsla(23.07692307692308, 83.2%, 49.01960784313726%, 0) 100%), radial-gradient(at 82.96811148646117% 87.54658027162331%, hsla(0, 0%, 68.23529411764706%, 1) 0%, hsla(0, 0%, 68.23529411764706%, 0) 100%), radial-gradient(at 2.06001364330074% 36.43157263738457%, hsla(27.16981132075472, 95.20958083832338%, 67.25490196078431%, 1) 0%, hsla(27.16981132075472, 95.20958083832338%, 67.25490196078431%, 0) 100%), radial-gradient(at 86.35752690638951% 19.886808227350816%, hsla(0, 0%, 30.19607843137255%, 1) 0%, hsla(0, 0%, 30.19607843137255%, 0) 100%), radial-gradient(at 1.9286552477867036% 37.44094957587672%, hsla(23.07692307692308, 83.2%, 49.01960784313726%, 1) 0%, hsla(23.07692307692308, 83.2%, 49.01960784313726%, 0) 100%), radial-gradient(at 81.95171514764138% 27.796517959167133%, hsla(0, 0%, 68.23529411764706%, 1) 0%, hsla(0, 0%, 68.23529411764706%, 0) 100%), radial-gradient(at 48.76569063341943% 57.33017248536295%, hsla(27.16981132075472, 95.20958083832338%, 67.25490196078431%, 1) 0%, hsla(27.16981132075472, 95.20958083832338%, 67.25490196078431%, 0) 100%), radial-gradient(at 55.27119977837093% 26.219101084209427%, hsla(0, 0%, 30.19607843137255%, 1) 0%, hsla(0, 0%, 30.19607843137255%, 0) 100%), radial-gradient(at 11.5857592532554% 57.125144986273234%, hsla(23.07692307692308, 83.2%, 49.01960784313726%, 1) 0%, hsla(23.07692307692308, 83.2%, 49.01960784313726%, 0) 100%), radial-gradient(at 65.31908632448204% 65.72418016246596%, hsla(0, 0%, 68.23529411764706%, 1) 0%, hsla(0, 0%, 68.23529411764706%, 0) 100%), radial-gradient(at 3.2825709038424855% 98.3420434431862%, hsla(27.16981132075472, 95.20958083832338%, 67.25490196078431%, 1) 0%, hsla(27.16981132075472, 95.20958083832338%, 67.25490196078431%, 0) 100%);
+            background-repeat: no-repeat;
+            background-size: cover;
             padding: 120px 20px 80px;
             position: relative;
             overflow: hidden;
@@ -884,6 +900,14 @@
             color: var(--orange);
         }
 
+        .contacts-disclaimer {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: var(--gray-medium);
+            text-align: center;
+        }
+
         /* ===== FOOTER ===== */
         footer {
             background: var(--gray-dark);
@@ -1176,7 +1200,15 @@
             <h3>Соцсети</h3>
             <a href="https://vk.ru/bton.store" target="_blank" style="">vk.ru/bton.store</a>
           </div>
+          <div class="contact-item">
+            <div class="contact-icon">🛒</div>
+            <h3>Маркетплейсы</h3>
+            <a href="https://lmbd.ru/bton-shop/" target="_blank" rel="noopener">Ламбада Маркет</a><br>
+            <a href="https://www.livemaster.ru/btonmain" target="_blank" rel="noopener">Ярмарка Мастеров</a><br>
+            <a href="https://instagram.com/btonshop" target="_blank" rel="noopener">Instagram*</a>
+          </div>
         </div>
+        <p class="contacts-disclaimer">* Instagram принадлежит компании Meta, которая признана экстремистской организацией и запрещена на территории Российской Федерации.</p>
       </div>
     </section>
     <!-- Footer -->
@@ -1213,6 +1245,7 @@
             <textarea id="comment" name="comment" placeholder="Дополнительная информация к заказу"></textarea>
           </div>
           <button type="submit" class="checkout-btn">Оформить заказ</button>
+          <p class="consent-note">Нажимая кнопку «Оформить», вы даёте <a href="privacy-consent.html" target="_blank" rel="noopener">согласие</a> на обработку своих персональных данных в соответствии с <a href="privacy-policy.html" target="_blank" rel="noopener">Политикой обработки ПД</a>.</p>
         </form>
       </div>
     </div>

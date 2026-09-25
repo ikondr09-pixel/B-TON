@@ -9,3 +9,4 @@ My repository for educational purposes
 10005-150-001: https://github.com/user-attachments/assets/7f78f858-56d9-4491-8f2c-849a9f9c590a
 10006-150-001: https://github.com/user-attachments/assets/48b185f7-e577-4d20-9866-22f9c0878e4f
 Лого бренда малое: https://github.com/user-attachments/assets/9be6b1a5-17a4-4a49-be2b-3274afb1b54c
+Мэш градиент для HERO фона: https://github.com/user-attachments/assets/75d5caf3-7169-44ae-ab3d-3a01dc37684d

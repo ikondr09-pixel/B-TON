@@ -516,10 +516,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background-color: #2a2a2a;
-            background-image: radial-gradient(at 51.39616262361927% 17.109118934507052%, hsla(0, 0%, 68.23529411764706%, 1) 0%, hsla(0, 0%, 68.23529411764706%, 0) 100%), radial-gradient(at 60.24710516561359% 67.98834672261732%, hsla(27.16981132075472, 95.20958083832338%, 67.25490196078431%, 1) 0%, hsla(27.16981132075472, 95.20958083832338%, 67.25490196078431%, 0) 100%), radial-gradient(at 94.22563224455769% 63.370516260831735%, hsla(0, 0%, 68.23529411764706%, 1) 0%, hsla(0, 0%, 68.23529411764706%, 0) 100%), radial-gradient(at 66.88860472902222% 95.21761944426144%, hsla(27.16981132075472, 95.20958083832338%, 67.25490196078431%, 1) 0%, hsla(27.16981132075472, 95.20958083832338%, 67.25490196078431%, 0) 100%), radial-gradient(at 58.56471002039271% 70.61084435970345%, hsla(0, 0%, 68.23529411764706%, 1) 0%, hsla(0, 0%, 68.23529411764706%, 0) 100%), radial-gradient(at 43.87548211144586% 96.48370777024651%, hsla(27.16981132075472, 95.20958083832338%, 67.25490196078431%, 1) 0%, hsla(27.16981132075472, 95.20958083832338%, 67.25490196078431%, 0) 100%), radial-gradient(at 80.09902980276398% 48.466873968874054%, hsla(0, 0%, 68.23529411764706%, 1) 0%, hsla(0, 0%, 68.23529411764706%, 0) 100%), radial-gradient(at 18.77471413661699% 0.11817736123512779%, hsla(27.16981132075472, 95.20958083832338%, 67.25490196078431%, 1) 0%, hsla(27.16981132075472, 95.20958083832338%, 67.25490196078431%, 0) 100%);
-            background-repeat: no-repeat;
-            background-size: cover;
+            background: var(--concrete-gradient);
             padding: 120px 20px 80px;
             position: relative;
             overflow: hidden;
@@ -553,7 +550,7 @@
 
         .hero-content h1 span {
             font-weight: 700;
-            background: var(--orange-gradient);
+            background: linear-gradient(135deg, #a8430a 0%, #bd4d0c 50%, #b0470a 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -562,7 +559,7 @@
         .hero-content p {
             font-size: clamp(1.2rem, 3vw, 1.8rem);
             font-weight: 300;
-            color: var(--gray-medium);
+            color: var(--gray-dark);
             margin-bottom: 60px;
         }
 
@@ -1057,9 +1054,9 @@
     <section class="hero" id="hero">
       <div class="hero-content">
         <h1>
-          Уют начинается<br>с <span style="background-color: transparent; background-image: linear-gradient(135deg, rgb(229, 101, 21) 0%, rgb(251, 164, 92) 50%, rgb(229, 101, 21) 100%);">мелочей</span>
+          Уют начинается<br>с <span style="background-color: transparent; background-image: linear-gradient(135deg, rgb(168, 67, 10) 0%, rgb(189, 77, 12) 50%, rgb(176, 71, 10) 100%);">мелочей</span>
         </h1>
-        <p style="color: rgb(77, 77, 77); font-weight: 700;">мелочи начинаются с нас</p>
+        <p style="color: var(--gray-dark); font-weight: 700;">мелочи начинаются с нас</p>
       </div>
       <a href="#catalog" class="scroll-arrow"> <svg viewBox="0 0 24 24"> <path d="M12 16l-6-6h12l-6 6z"></path> </svg> </a>
     </section>
